@@ -1,5 +1,4 @@
-
-import { PingStatus } from '../types';
+import { PingStatus } from "../types";
 
 interface PingResult {
   status: PingStatus;

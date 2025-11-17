@@ -1,18 +1,33 @@
-
-import React from 'react';
+import React from "react";
 
 const HeroSection: React.FC = () => {
   return (
     <section className="relative py-24 md:py-32 lg:py-48 text-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-radial from-primary-100/50 to-transparent dark:from-primary-900/30 dark:to-transparent" style={{ transform: 'scale(1.5)' }}></div>
+      <div
+        className="absolute inset-0 bg-gradient-radial from-primary-100/50 to-transparent dark:from-primary-900/30 dark:to-transparent"
+        style={{ transform: "scale(1.5)" }}
+      ></div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-          Welcome to <span className="text-primary-600 dark:text-primary-400">crystelf</span>
+        <h1
+          className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 animate-fade-in-up"
+          style={{ animationDelay: "0.1s" }}
+        >
+          Welcome to{" "}
+          <span className="text-primary-600 dark:text-primary-400">
+            crystelf
+          </span>
         </h1>
-        <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-300 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          An open-source organization dedicated to building innovative and accessible public services.
+        <p
+          className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-300 animate-fade-in-up"
+          style={{ animationDelay: "0.3s" }}
+        >
+          An open-source organization dedicated to building innovative and
+          accessible public services.
         </p>
-        <div className="mt-8 flex justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+        <div
+          className="mt-8 flex justify-center gap-4 animate-fade-in-up"
+          style={{ animationDelay: "0.5s" }}
+        >
           <a
             href="#services"
             className="inline-block rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-transform hover:-translate-y-1"
