@@ -2,9 +2,9 @@ import React from "react";
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative py-24 md:py-32 lg:py-48 text-center overflow-hidden">
+    <section className="relative py-24 md:py-32 lg:py-48 text-center overflow-hidden bg-white dark:bg-slate-900">
       <div
-        className="absolute inset-0 bg-gradient-radial from-primary-100/50 to-transparent dark:from-primary-900/30 dark:to-transparent"
+        className="absolute inset-0 bg-gradient-radial from-blue-100/50 to-transparent dark:from-blue-900/30 dark:to-transparent"
         style={{ transform: "scale(1.5)" }}
       ></div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -13,7 +13,7 @@ const HeroSection: React.FC = () => {
           style={{ animationDelay: "0.1s" }}
         >
           Welcome to{" "}
-          <span className="text-primary-600 dark:text-primary-400">
+          <span className="text-blue-600 dark:text-blue-400">
             crystelf
           </span>
         </h1>
@@ -30,7 +30,7 @@ const HeroSection: React.FC = () => {
         >
           <a
             href="#services"
-            className="inline-block rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-transform hover:-translate-y-1"
+            className="inline-block rounded-md bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform hover:-translate-y-1"
           >
             Explore Services
           </a>

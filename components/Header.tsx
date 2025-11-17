@@ -79,7 +79,7 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           <a
             href="#"
-            className="text-2xl font-bold text-primary-600 dark:text-primary-400"
+            className="text-2xl font-bold text-blue-600 dark:text-blue-400"
           >
             crystelf
           </a>
@@ -88,7 +88,7 @@ const Header: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 {link.name}
               </a>
@@ -99,13 +99,13 @@ const Header: React.FC = () => {
               href="https://github.com/crystelf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               <GitHubIcon />
             </a>
             <button
               onClick={toggleTheme}
-              className="text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               {theme === "light" ? <MoonIcon /> : <SunIcon />}
             </button>

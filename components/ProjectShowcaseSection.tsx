@@ -14,7 +14,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({
       <div className="flex-grow">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="flex-shrink-0 text-primary-500 dark:text-primary-400">
+            <div className="flex-shrink-0 text-blue-500 dark:text-blue-400">
               {project.icon}
             </div>
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
@@ -25,7 +25,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-400 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors"
+            className="text-slate-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors"
             aria-label={`View ${project.title} on GitHub`}
           >
             <svg
@@ -48,7 +48,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800 dark:bg-primary-900/50 dark:text-primary-300"
+              className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300"
             >
               {tag}
             </span>

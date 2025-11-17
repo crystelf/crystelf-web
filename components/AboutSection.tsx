@@ -27,7 +27,7 @@ const AboutSection: React.FC = () => {
               href="https://github.com/crystelf"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-block rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-transform hover:-translate-y-1"
+              className="mt-6 inline-block rounded-md bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform hover:-translate-y-1"
             >
               Join the Conversation
             </a>

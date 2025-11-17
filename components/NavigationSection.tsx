@@ -63,7 +63,7 @@ const NavLinkCard: React.FC<{ link: NavLink }> = ({ link }) => {
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary-500 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors"
+            className="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

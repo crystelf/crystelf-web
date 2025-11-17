@@ -15,11 +15,11 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <div className="flex items-center space-x-4">
-        <div className="flex-shrink-0 text-primary-500 dark:text-primary-400">
+        <div className="flex-shrink-0 text-blue-500 dark:text-blue-400">
           {service.icon}
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {service.title}
           </h3>
         </div>

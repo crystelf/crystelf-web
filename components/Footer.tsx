@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
               href="https://github.com/crystelf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               <GitHubIcon />
             </a>
