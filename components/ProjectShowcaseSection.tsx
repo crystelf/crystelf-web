@@ -2,10 +2,7 @@ import React from "react";
 import { PROJECTS } from "../constants";
 import { Project } from "../types";
 
-const ProjectCard: React.FC<{ project: Project; index: number }> = ({
-  project,
-  index,
-}) => {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <div
       className="group flex flex-col p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 animate-fade-in-up"
@@ -57,9 +54,9 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({
       </div>
     </div>
   );
-};
+}
 
-const ProjectShowcaseSection: React.FC = () => {
+function ProjectShowcaseSection() {
   return (
     <section id="projects" className="py-20 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,6 +76,6 @@ const ProjectShowcaseSection: React.FC = () => {
       </div>
     </section>
   );
-};
+}
 
 export default ProjectShowcaseSection;
