@@ -1,6 +1,6 @@
 import React from "react";
 
-const AboutSection: React.FC = () => {
+function AboutSection() {
   return (
     <section id="about" className="py-20 bg-slate-100 dark:bg-slate-950">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,6 +36,6 @@ const AboutSection: React.FC = () => {
       </div>
     </section>
   );
-};
+}
 
 export default AboutSection;

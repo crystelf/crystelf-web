@@ -17,7 +17,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const THEME_STORAGE_KEY = "theme";
 
-const getInitialTheme = (): Theme => {
+function getInitialTheme(): Theme {
   if (typeof window === "undefined") {
     return "light";
   }
@@ -29,7 +29,7 @@ const getInitialTheme = (): Theme => {
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;
   return prefersDark ? "dark" : "light";
-};
+}
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
   children,
@@ -57,10 +57,10 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
-export const useTheme = (): ThemeContextType => {
+export function useTheme(): ThemeContextType {
   const context = useContext(ThemeContext);
   if (context === undefined) {
     throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;
-};
+}

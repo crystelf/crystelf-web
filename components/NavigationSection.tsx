@@ -3,10 +3,7 @@ import { NAV_LINKS } from "../constants";
 import { NavLink, PingStatus } from "../types";
 import { ping } from "../services/pingService";
 
-const StatusIndicator: React.FC<{
-  status: PingStatus;
-  latency: number | null;
-}> = ({ status, latency }) => {
+function StatusIndicator({ status, latency }) {
   if (status === PingStatus.Loading) {
     return (
       <div className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
@@ -30,9 +27,9 @@ const StatusIndicator: React.FC<{
       <span>Offline</span>
     </div>
   );
-};
+}
 
-const NavLinkCard: React.FC<{ link: NavLink }> = ({ link }) => {
+function NavLinkCard({ link }: { link: NavLink }) {
   const [status, setStatus] = useState<PingStatus>(PingStatus.Loading);
   const [latency, setLatency] = useState<number | null>(null);
 
@@ -85,9 +82,9 @@ const NavLinkCard: React.FC<{ link: NavLink }> = ({ link }) => {
       </div>
     </div>
   );
-};
+}
 
-const NavigationSection: React.FC = () => {
+function NavigationSection() {
   return (
     <section id="navigation" className="py-20 bg-slate-50 dark:bg-slate-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,6 +104,6 @@ const NavigationSection: React.FC = () => {
       </div>
     </section>
   );
-};
+}
 
 export default NavigationSection;

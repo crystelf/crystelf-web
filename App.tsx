@@ -7,7 +7,7 @@ import NavigationSection from "./components/NavigationSection";
 import AboutSection from "./components/AboutSection";
 import Footer from "./components/Footer";
 
-const App: React.FC = () => {
+function App() {
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
       <Header />
@@ -21,6 +21,6 @@ const App: React.FC = () => {
       <Footer />
     </div>
   );
-};
+}
 
 export default App;

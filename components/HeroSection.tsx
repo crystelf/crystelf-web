@@ -1,6 +1,6 @@
 import React from "react";
 
-const HeroSection: React.FC = () => {
+function HeroSection() {
   return (
     <section className="relative py-24 md:py-32 lg:py-48 text-center overflow-hidden bg-white dark:bg-slate-900">
       <div
@@ -13,9 +13,7 @@ const HeroSection: React.FC = () => {
           style={{ animationDelay: "0.1s" }}
         >
           Welcome to{" "}
-          <span className="text-blue-600 dark:text-blue-400">
-            crystelf
-          </span>
+          <span className="text-blue-600 dark:text-blue-400">crystelf</span>
         </h1>
         <p
           className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-300 animate-fade-in-up"
@@ -46,6 +44,6 @@ const HeroSection: React.FC = () => {
       </div>
     </section>
   );
-};
+}
 
 export default HeroSection;

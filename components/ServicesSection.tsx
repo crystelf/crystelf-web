@@ -2,10 +2,7 @@ import React from "react";
 import { SERVICES } from "../constants";
 import { Service } from "../types";
 
-const ServiceCard: React.FC<{ service: Service; index: number }> = ({
-  service,
-  index,
-}) => {
+function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
     <a
       href={service.link}
@@ -29,9 +26,9 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({
       </p>
     </a>
   );
-};
+}
 
-const ServicesSection: React.FC = () => {
+function ServicesSection() {
   return (
     <section id="services" className="py-20 bg-slate-100 dark:bg-slate-950">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,6 +48,6 @@ const ServicesSection: React.FC = () => {
       </div>
     </section>
   );
-};
+}
 
 export default ServicesSection;
