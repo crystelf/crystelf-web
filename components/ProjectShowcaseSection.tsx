@@ -2,11 +2,17 @@ import React from "react";
 import { FolderIcon } from "../constants";
 import { Project } from "../types";
 import { useLanguage } from "../contexts/LanguageContext";
+import useInViewAnimation from "../hooks/useInViewAnimation";
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const [cardRef, cardVisible] = useInViewAnimation<HTMLDivElement>();
+
   return (
     <div
-      className="group flex flex-col p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 animate-fade-in-up"
+      ref={cardRef}
+      className={`group flex flex-col p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 ${
+        cardVisible ? "animate-fade-in-up" : "before-fade-in-up"
+      }`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <div className="flex-grow">

@@ -2,14 +2,20 @@ import React from "react";
 import { CodeBracketIcon, CloudIcon, BookOpenIcon } from "../constants";
 import { Service } from "../types";
 import { useLanguage } from "../contexts/LanguageContext";
+import useInViewAnimation from "../hooks/useInViewAnimation";
 
 function ServiceCard({ service, index }: { service: Service; index: number }) {
+  const [cardRef, cardVisible] = useInViewAnimation<HTMLAnchorElement>();
+
   return (
     <a
+      ref={cardRef}
       href={service.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 animate-fade-in-up"
+      className={`group block p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 ${
+        cardVisible ? "animate-fade-in-up" : "before-fade-in-up"
+      }`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <div className="flex items-center space-x-4">
