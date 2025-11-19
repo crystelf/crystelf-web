@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { NAV_LINKS } from "../constants";
 import { NavLink, PingStatus } from "../types";
 import { ping } from "../services/pingService";
+import { useLanguage } from "../contexts/LanguageContext";
 
-function StatusIndicator({ status, latency }) {
+function StatusIndicator({ status, latency }: { status: PingStatus; latency: number | null }) {
+  const { t } = useLanguage();
+
   if (status === PingStatus.Loading) {
     return (
       <div className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
         <div className="h-2.5 w-2.5 bg-yellow-400 rounded-full animate-ping-slow"></div>
-        <span>Checking...</span>
+        <span>{t.navigation.checking}</span>
       </div>
     );
   }
@@ -17,14 +19,14 @@ function StatusIndicator({ status, latency }) {
     return (
       <div className="flex items-center space-x-2 text-sm text-green-600 dark:text-green-400">
         <div className="h-2.5 w-2.5 bg-green-500 rounded-full"></div>
-        <span>Online - {latency}ms</span>
+        <span>{t.navigation.online} - {latency}ms</span>
       </div>
     );
   }
   return (
     <div className="flex items-center space-x-2 text-sm text-red-600 dark:text-red-400">
       <div className="h-2.5 w-2.5 bg-red-500 rounded-full"></div>
-      <span>Offline</span>
+      <span>{t.navigation.offline}</span>
     </div>
   );
 }
@@ -85,19 +87,48 @@ function NavLinkCard({ link }: { link: NavLink }) {
 }
 
 function NavigationSection() {
+  const { t } = useLanguage();
+
+  const navLinks: NavLink[] = [
+    {
+      name: t.navLinksData.officialWebsite.name,
+      href: "https://crystelf.top",
+      pingUrl: "https://crystelf.top",
+      description: t.navLinksData.officialWebsite.description,
+    },
+    {
+      name: t.navLinksData.githubOrg.name,
+      href: "https://github.com/crystelf",
+      pingUrl: "https://github.com",
+      description: t.navLinksData.githubOrg.description,
+    },
+    {
+      name: t.navLinksData.coreProject.name,
+      href: "https://github.com/crystelf/crystelf-core",
+      pingUrl: "https://github.com",
+      description: t.navLinksData.coreProject.description,
+    },
+    {
+      name: t.navLinksData.documentation.name,
+      href: "https://github.com/crystelf/crystelf-docs",
+      pingUrl: "https://github.com",
+      description: t.navLinksData.documentation.description,
+    },
+  ];
+
   return (
     <section id="navigation" className="py-20 bg-slate-50 dark:bg-slate-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Service Navigation
+            {t.navigation.title}
           </h2>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
-            Quick links to our essential services and their current status.
+            {t.navigation.subtitle}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <NavLinkCard key={link.name} link={link} />
           ))}
         </div>

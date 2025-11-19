@@ -1,6 +1,7 @@
 import React from "react";
-import { PROJECTS } from "../constants";
+import { FolderIcon } from "../constants";
 import { Project } from "../types";
+import { useLanguage } from "../contexts/LanguageContext";
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
@@ -57,19 +58,45 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 function ProjectShowcaseSection() {
+  const { t } = useLanguage();
+
+  const projects: Project[] = [
+    {
+      icon: <FolderIcon />,
+      title: t.projectsData.projectOne.title,
+      description: t.projectsData.projectOne.description,
+      link: "https://github.com/crystelf",
+      tags: ["TypeScript", "React", "Node.js"],
+    },
+    {
+      icon: <FolderIcon />,
+      title: t.projectsData.phoenix.title,
+      description: t.projectsData.phoenix.description,
+      link: "https://github.com/crystelf",
+      tags: ["D3.js", "JavaScript", "CSS"],
+    },
+    {
+      icon: <FolderIcon />,
+      title: t.projectsData.goUtils.title,
+      description: t.projectsData.goUtils.description,
+      link: "https://github.com/crystelf",
+      tags: ["Go", "CLI", "Utilities"],
+    },
+  ];
+
   return (
     <section id="projects" className="py-20 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Project Showcase
+            {t.projects.title}
           </h2>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
-            A selection of our open-source creations.
+            {t.projects.subtitle}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS.map((project, index) => (
+          {projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
