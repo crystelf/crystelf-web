@@ -1,4 +1,5 @@
 import React from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 function GitHubIcon() {
   return (
@@ -18,12 +19,14 @@ function GitHubIcon() {
 }
 
 function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-sm text-slate-500 dark:text-slate-400">
-            &copy; {new Date().getFullYear()} crystelf. All Rights Reserved.
+            &copy; {new Date().getFullYear()} crystelf. {t.footer.rights}
           </p>
           <div className="flex items-center space-x-6">
             <a

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "../contexts/ThemeContext";
+import { useLanguage } from "../contexts/LanguageContext";
+import LanguageSelector from "./LanguageSelector";
 
 // SVG Icons
 function SunIcon() {
@@ -60,6 +62,7 @@ function GitHubIcon() {
 
 function Header() {
   const { theme, toggleTheme } = useTheme();
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -71,10 +74,10 @@ function Header() {
   }, []);
 
   const navLinks = [
-    { name: "Services", href: "#services" },
-    { name: "Projects", href: "#projects" },
-    { name: "Navigation", href: "#navigation" },
-    { name: "About", href: "#about" },
+    { name: t.nav.services, href: "#services" },
+    { name: t.nav.projects, href: "#projects" },
+    { name: t.nav.navigation, href: "#navigation" },
+    { name: t.nav.about, href: "#about" },
   ];
 
   return (
@@ -100,7 +103,8 @@ function Header() {
               </a>
             ))}
           </nav>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            <LanguageSelector />
             <a
               href="https://github.com/crystelf"
               target="_blank"
