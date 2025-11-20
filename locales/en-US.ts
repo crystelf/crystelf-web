@@ -9,6 +9,7 @@ export const enUS = {
   // Hero section
   hero: {
     welcome: "Welcome to",
+    welcome2: "crystelf",
     subtitle:
       "An open-source organization dedicated to building innovative and accessible public services.",
     exploreServices: "Explore Services",

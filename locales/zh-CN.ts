@@ -8,38 +8,41 @@ export const zhCN = {
   },
   // 首页
   hero: {
-    welcome: "欢迎来到",
-    subtitle: "一个致力于构建创新和可访问的公共服务的开源组织。",
+    welcome: "构建开源的",
+    welcome2: "公益服务",
+    subtitle:
+      "晶灵工作室致力于构建开源的优质服务,为社区及全球开发者提供良好的软硬件支持,让创作工具及项目更加高效",
     exploreServices: "探索服务",
     viewOnGitHub: "GitHub",
   },
   // 服务部分
   services: {
     title: "我们的产品与服务",
-    subtitle: "我们自豪地维护的开源项目和公共服务。",
+    subtitle: "我们为爱发电,自豪维护的公益服务",
   },
   // 项目展示
   projects: {
-    title: "项目展示",
-    subtitle: "我们开源作品的选择。",
+    title: "开源项目",
+    subtitle:
+      "从面向开发者和社区的开发工具到面向用户的前端工程,我们开源的项目涵盖软件开发的各个方面",
   },
   // 导航部分
   navigation: {
-    title: "服务导航",
-    subtitle: "快速链接到我们的基本服务及其当前状态。",
+    title: "网址导航",
+    subtitle: "快速导航到我们的服务页面及相关网页",
     checking: "Checking...",
     online: "Online",
     offline: "Offline",
   },
   // 关于部分
   about: {
-    title: "关于 Crystelf",
+    title: "关于 晶灵工作室",
     description:
-      "crystelf 是一个充满热情的、社区驱动的组织，专注于创建高质量的开源软件和公共服务。我们的使命是构建不仅强大高效，而且对所有人免费和可访问的工具。我们相信协作的力量，并努力为来自不同背景的贡献者营造一个友好的环境。",
+      "晶灵工作室 是一个社区驱动的组织,专注于创建高质量的开源软件和公共服务.我们的使命是构建不仅强大高效,而且对多数人免费和可访问的工具.我们相信协作的力量,并努力为来自不同背景的贡献者营造一个友好的环境.",
     contactUs: "联系我们",
     contactDescription:
-      "最好的联系方式是通过我们的 QQ 群或在我们的 GitHub 仓库中提出问题。我们期待您的消息！",
-    joinConversation: "加入对话",
+      "最好的联系方式是通过我们的 QQ 群或在我们的 GitHub 仓库中提出问题.我们期待您的消息!",
+    joinConversation: "加入QQ群",
   },
   // 页脚
   footer: {

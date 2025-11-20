@@ -24,7 +24,9 @@ function HeroSection() {
           style={{ animationDelay: "0.1s" }}
         >
           {t.hero.welcome}{" "}
-          <span className="text-blue-600 dark:text-blue-400">crystelf</span>
+          <span className="text-blue-600 dark:text-blue-400">
+            {t.hero.welcome2}
+          </span>
         </h1>
         <p
           ref={subtitleRef}
