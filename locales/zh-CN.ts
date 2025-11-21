@@ -57,17 +57,37 @@ export const zhCN = {
   // 服务数据
   servicesData: {
     core: {
-      title: "Crystelf Core",
-      description: "我们生态系统的核心框架，为开发者提供基础功能和工具。",
+      title: "crystelf-core",
+      description: "我们为开发者专门打造的API服务,开源且开放公共实例供使用",
     },
     cloudRobot: {
-      title: "公共云机器人",
+      title: "TRSS-Tunzai 公益机器人",
       description:
-        "一个非营利性的基于云的机器人服务，为社区提供各种自动化功能。",
+        "一个非营利性的基于云崽的机器人服务,旨在为群友提供更好的聊天体验",
     },
     docs: {
-      title: "Crystelf 文档",
-      description: "我们所有项目和服务的全面文档，指导您完成每一步。",
+      title: "crystelf-docs",
+      description: "我们所有项目和服务的全面文档,指导您完成每一步",
+    },
+    drive: {
+      title: "crystelf-drive",
+      description:
+        "使用开源的Openlist搭建而成的云储存服务,依赖晶灵数据中心(nas)及晶灵文件分发服务(cdn),为用户提供稳定高速的服务",
+    },
+    lab: {
+      title: "crystelf-lab",
+      description:
+        "使用Misskey搭建的开源去中心化社区,为社区开发者提供一个去中心化的平台,并为用户提供一个讨论平台",
+    },
+    gitea: {
+      title: "crystelf-gitea",
+      description:
+        "一个基于Gitea的开源代码托管服务,旨在解决社区开发者的代码托管需求,并优化大陆连接github速度慢的问题",
+    },
+    mc: {
+      title: "fograin-mc",
+      description:
+        "托管在晶灵游戏服务器上的Minecraft社区,为玩家提供一个良好的游玩环境并为开发者提供良好的运算性能",
     },
   },
   // 项目数据

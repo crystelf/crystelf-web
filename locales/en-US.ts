@@ -8,27 +8,29 @@ export const enUS = {
   },
   // Hero section
   hero: {
-    welcome: "Welcome to",
-    welcome2: "crystelf",
+    welcome: "Build open source",
+    welcome2: "public services",
     subtitle:
-      "An open-source organization dedicated to building innovative and accessible public services.",
+      "Crystelf is committed to building high-quality open source services, providing good software and hardware support for the community and global developers, and making creative tools and projects more efficient",
     exploreServices: "Explore Services",
     viewOnGitHub: "View on GitHub",
   },
   // Services section
   services: {
     title: "Our Products & Services",
-    subtitle: "Open-source projects and public services we proudly maintain.",
+    subtitle:
+      "We are proud to maintain public services with love and power generation",
   },
   // Projects showcase
   projects: {
     title: "Project Showcase",
-    subtitle: "A selection of our open-source creations.",
+    subtitle:
+      "From developer-oriented and community-oriented development tools to user-oriented front-end engineering, our open-source projects cover all aspects of software development",
   },
   // Navigation section
   navigation: {
     title: "Service Navigation",
-    subtitle: "Quick links to our essential services and their current status.",
+    subtitle: "Quick navigation to our service page and related pages",
     checking: "Checking...",
     online: "Online",
     offline: "Offline",
@@ -56,19 +58,38 @@ export const enUS = {
   // Services data
   servicesData: {
     core: {
-      title: "Crystelf Core",
+      title: "crystelf-core",
       description:
-        "The core framework of our ecosystem, providing fundamental functionalities and tools for developers.",
+        "Our API services are specially built for developers, open source and open public instances for use",
     },
     cloudRobot: {
-      title: "Public Cloud Robot",
+      title: "TRSS-Tunzai Public Robot",
       description:
-        "A non-profit cloud-based robot service offering various automated functionalities for communities.",
+        "A non-profit Yunzai-based bot service designed to provide a better chat experience for group members",
     },
     docs: {
-      title: "Crystelf Docs",
+      title: "crystelf-docs",
       description:
-        "Comprehensive documentation for all our projects and services, guiding you through every step.",
+        "Comprehensive documentation for all our projects and services, guiding you through every step",
+    },
+    drive: {
+      title: "crystelf-drive",
+      description:
+        "The cloud storage service built using the open-source OpenList relies on the Crystal Data Center (NAS) and the Crystal File Distribution Service (CDN) to provide users with stable and high-speed services",
+    },
+    lab: {
+      title: "crystelf-lab",
+      description: "An open-source decentralized community built with Misskey",
+    },
+    gitea: {
+      title: "crystelf-gitea",
+      description:
+        "An open-source code hosting service based on Gitea designed to solve the code hosting needs of community developers and optimize the problem of slow connection to github on Continental",
+    },
+    mc: {
+      title: "fograin-mc",
+      description:
+        "The Minecraft community hosted on the Crystelf game server provides a good playing environment for players and good computing performance for developers",
     },
   },
   // Projects data
