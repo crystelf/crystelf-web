@@ -1,5 +1,5 @@
-import React from "react";
-import { FolderIcon } from "../constants";
+import React, { useMemo } from "react";
+import { AiIcon, CodeBracketIcon, FolderIcon, PluginIcon } from "../constants";
 import { Project } from "../types";
 import { useLanguage } from "../contexts/LanguageContext";
 import useInViewAnimation from "../hooks/useInViewAnimation";
@@ -66,29 +66,32 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 function ProjectShowcaseSection() {
   const { t } = useLanguage();
 
-  const projects: Project[] = [
-    {
-      icon: <FolderIcon />,
-      title: t.projectsData.projectOne.title,
-      description: t.projectsData.projectOne.description,
-      link: "https://github.com/crystelf",
-      tags: ["TypeScript", "React", "Node.js"],
-    },
-    {
-      icon: <FolderIcon />,
-      title: t.projectsData.phoenix.title,
-      description: t.projectsData.phoenix.description,
-      link: "https://github.com/crystelf",
-      tags: ["D3.js", "JavaScript", "CSS"],
-    },
-    {
-      icon: <FolderIcon />,
-      title: t.projectsData.goUtils.title,
-      description: t.projectsData.goUtils.description,
-      link: "https://github.com/crystelf",
-      tags: ["Go", "CLI", "Utilities"],
-    },
-  ];
+  const projects: Project[] = useMemo(
+    () => [
+      {
+        icon: <CodeBracketIcon />,
+        title: t.projectsData.core.title,
+        description: t.projectsData.core.description,
+        link: "https://github.com/crystelf/crystelf-core",
+        tags: ["TypeScript", "NestJS", "Express"],
+      },
+      {
+        icon: <PluginIcon />,
+        title: t.projectsData.plugin.title,
+        description: t.projectsData.plugin.description,
+        link: "https://github.com/jerryplusy/crystelf-plugin",
+        tags: ["JavaScript", "Node.js", "TRSS-Yunzai"],
+      },
+      {
+        icon: <AiIcon />,
+        title: t.projectsData.ai.title,
+        description: t.projectsData.ai.description,
+        link: "https://github.com/jerryplusy/crystelf-plugin",
+        tags: ["JavaScript", "Node.js", "Open-ai"],
+      },
+    ],
+    [t],
+  );
 
   return (
     <section id="projects" className="py-20 bg-white dark:bg-slate-900">
@@ -103,7 +106,7 @@ function ProjectShowcaseSection() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
       </div>
