@@ -15,7 +15,7 @@ function App() {
         <HeroSection />
         <ServicesSection />
         <ProjectShowcaseSection />
-        <NavigationSection />
+        {/*<NavigationSection />*/}
         <AboutSection />
       </main>
       <Footer />

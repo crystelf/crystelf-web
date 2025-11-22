@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { NavLink, PingStatus } from "../types";
 import { ping } from "../services/pingService";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -89,32 +89,35 @@ function NavLinkCard({ link }: { link: NavLink }) {
 function NavigationSection() {
   const { t } = useLanguage();
 
-  const navLinks: NavLink[] = [
-    {
-      name: t.navLinksData.officialWebsite.name,
-      href: "https://crystelf.top",
-      pingUrl: "https://crystelf.top",
-      description: t.navLinksData.officialWebsite.description,
-    },
-    {
-      name: t.navLinksData.githubOrg.name,
-      href: "https://github.com/crystelf",
-      pingUrl: "https://github.com",
-      description: t.navLinksData.githubOrg.description,
-    },
-    {
-      name: t.navLinksData.coreProject.name,
-      href: "https://github.com/crystelf/crystelf-core",
-      pingUrl: "https://github.com",
-      description: t.navLinksData.coreProject.description,
-    },
-    {
-      name: t.navLinksData.documentation.name,
-      href: "https://github.com/crystelf/crystelf-docs",
-      pingUrl: "https://github.com",
-      description: t.navLinksData.documentation.description,
-    },
-  ];
+  const navLinks: NavLink[] = useMemo(
+    () => [
+      {
+        name: t.navLinksData.officialWebsite.name,
+        href: "https://crystelf.top",
+        pingUrl: "https://crystelf.top",
+        description: t.navLinksData.officialWebsite.description,
+      },
+      {
+        name: t.navLinksData.githubOrg.name,
+        href: "https://github.com/crystelf",
+        pingUrl: "https://github.com",
+        description: t.navLinksData.githubOrg.description,
+      },
+      {
+        name: t.navLinksData.coreProject.name,
+        href: "https://github.com/crystelf/crystelf-core",
+        pingUrl: "https://github.com",
+        description: t.navLinksData.coreProject.description,
+      },
+      {
+        name: t.navLinksData.documentation.name,
+        href: "https://github.com/crystelf/crystelf-docs",
+        pingUrl: "https://github.com",
+        description: t.navLinksData.documentation.description,
+      },
+    ],
+    [t]
+  );
 
   return (
     <section id="navigation" className="py-20 bg-slate-50 dark:bg-slate-900">
@@ -128,8 +131,8 @@ function NavigationSection() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {navLinks.map((link) => (
-            <NavLinkCard key={link.name} link={link} />
+          {navLinks.map((link, index) => (
+            <NavLinkCard key={index} link={link} />
           ))}
         </div>
       </div>

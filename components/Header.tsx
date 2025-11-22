@@ -88,9 +88,12 @@ function Header() {
         <div className="flex items-center justify-between h-16">
           <a
             href="#"
-            className="text-2xl font-bold text-blue-600 dark:text-blue-400"
+            className="flex items-center space-x-2 text-2xl font-bold text-blue-600 dark:text-blue-400"
           >
-            crystelf
+            <div className="flex-shrink-0 w-8 h-8">
+              {/* LogoIcon 组件 */}
+            </div>
+            <span>crystelf</span>
           </a>
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
