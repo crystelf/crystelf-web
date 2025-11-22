@@ -1,5 +1,14 @@
-import React from "react";
-import { CodeBracketIcon, CloudIcon, BookOpenIcon } from "../constants";
+import React, { useMemo } from "react";
+import {
+  CodeBracketIcon,
+  CloudIcon,
+  BookOpenIcon,
+  BotIcon,
+  DriveIcon,
+  MisskeyIcon,
+  GiteaIcon,
+  MinecraftIcon,
+} from "../constants";
 import { Service } from "../types";
 import { useLanguage } from "../contexts/LanguageContext";
 import useInViewAnimation from "../hooks/useInViewAnimation";
@@ -38,26 +47,53 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
 function ServicesSection() {
   const { t } = useLanguage();
 
-  const services: Service[] = [
-    {
-      icon: <CodeBracketIcon />,
-      title: t.servicesData.core.title,
-      description: t.servicesData.core.description,
-      link: "https://github.com/crystelf/crystelf-core",
-    },
-    {
-      icon: <CloudIcon />,
-      title: t.servicesData.cloudRobot.title,
-      description: t.servicesData.cloudRobot.description,
-      link: "https://github.com/crystelf",
-    },
-    {
-      icon: <BookOpenIcon />,
-      title: t.servicesData.docs.title,
-      description: t.servicesData.docs.description,
-      link: "https://github.com/crystelf/crystelf-docs",
-    },
-  ];
+  const services: Service[] = useMemo(
+    () => [
+      {
+        icon: <CodeBracketIcon />,
+        title: t.servicesData.core.title,
+        description: t.servicesData.core.description,
+        link: "https://github.com/crystelf/crystelf-core",
+      },
+      {
+        icon: <BookOpenIcon />,
+        title: t.servicesData.docs.title,
+        description: t.servicesData.docs.description,
+        link: "https://docs.crystelf.top",
+      },
+      {
+        icon: <BotIcon />,
+        title: t.servicesData.cloudRobot.title,
+        description: t.servicesData.cloudRobot.description,
+        link: "https://docs.crystelf.top/bot",
+      },
+      {
+        icon: <DriveIcon />,
+        title: t.servicesData.drive.title,
+        description: t.servicesData.drive.description,
+        link: "https://alist.crystelf.top",
+      },
+      {
+        icon: <MisskeyIcon />,
+        title: t.servicesData.lab.title,
+        description: t.servicesData.lab.description,
+        link: "https://lab.crystelf.top",
+      },
+      {
+        icon: <GiteaIcon />,
+        title: t.servicesData.gitea.title,
+        description: t.servicesData.gitea.description,
+        link: "https://git.crystelf.top",
+      },
+      {
+        icon: <MinecraftIcon />,
+        title: t.servicesData.mc.title,
+        description: t.servicesData.mc.description,
+        link: "https://mc.crystelf.top",
+      },
+    ],
+    [t],
+  );
 
   return (
     <section id="services" className="py-20 bg-slate-100 dark:bg-slate-950">
@@ -72,7 +108,7 @@ function ServicesSection() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <ServiceCard key={service.title} service={service} index={index} />
+            <ServiceCard key={index} service={service} index={index} />
           ))}
         </div>
       </div>
