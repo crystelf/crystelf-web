@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
 import LanguageSelector from "./LanguageSelector";
+import { CrystelfLogo } from "@/constants.tsx";
 
 // SVG Icons
 function SunIcon() {
@@ -92,6 +93,7 @@ function Header() {
           >
             <div className="flex-shrink-0 w-8 h-8">
               {/* LogoIcon 组件 */}
+              <CrystelfLogo />
             </div>
             <span>crystelf</span>
           </a>
