@@ -63,7 +63,7 @@ export const enUS = {
         "Our API services are specially built for developers, open source and open public instances for use",
     },
     cloudRobot: {
-      title: "TRSS-Tunzai Public Robot",
+      title: "TRSS-Yunzai Public Robot",
       description:
         "A non-profit Yunzai-based bot service designed to provide a better chat experience for group members",
     },

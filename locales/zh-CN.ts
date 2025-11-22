@@ -61,7 +61,7 @@ export const zhCN = {
       description: "我们为开发者专门打造的API服务,开源且开放公共实例供使用",
     },
     cloudRobot: {
-      title: "TRSS-Tunzai 公益机器人",
+      title: "TRSS-Yunzai 公益机器人",
       description:
         "一个非营利性的基于云崽的机器人服务,旨在为群友提供更好的聊天体验",
     },
@@ -87,7 +87,7 @@ export const zhCN = {
     mc: {
       title: "fograin-mc",
       description:
-        "托管在晶灵游戏服务器上的Minecraft社区,为玩家提供一个良好的游玩环境并为开发者提供良好的运算性能",
+        "托管在晶灵游戏服务器上的Minecraft社区,为玩家提供一个友好的游玩环境并为开发者提供良好的运算性能",
     },
   },
   // 项目数据
