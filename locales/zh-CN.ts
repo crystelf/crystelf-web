@@ -57,7 +57,7 @@ export const zhCN = {
   // 服务数据
   servicesData: {
     core: {
-      title: "crystelf-core",
+      title: "Crystelf-Core",
       description: "我们为开发者专门打造的API服务,开源且开放公共实例供使用",
     },
     cloudRobot: {
@@ -66,45 +66,46 @@ export const zhCN = {
         "一个非营利性的基于云崽的机器人服务,旨在为群友提供更好的聊天体验",
     },
     docs: {
-      title: "crystelf-docs",
+      title: "Crystelf-Docs",
       description: "我们所有项目和服务的全面文档,指导您完成每一步",
     },
     drive: {
-      title: "crystelf-drive",
+      title: "Crystelf-Drive",
       description:
         "使用开源的Openlist搭建而成的云储存服务,依赖晶灵数据中心(nas)及晶灵文件分发服务(cdn),为用户提供稳定高速的服务",
     },
     lab: {
-      title: "crystelf-lab",
+      title: "Crystelf-Lab",
       description:
         "使用Misskey搭建的开源去中心化社区,为社区开发者提供一个去中心化的平台,并为用户提供一个讨论平台",
     },
     gitea: {
-      title: "crystelf-gitea",
+      title: "Crystelf-Gitea",
       description:
         "一个基于Gitea的开源代码托管服务,旨在解决社区开发者的代码托管需求,并优化大陆连接github速度慢的问题",
     },
     mc: {
-      title: "fograin-mc",
+      title: "Fograin-mc",
       description:
         "托管在晶灵游戏服务器上的Minecraft社区,为玩家提供一个友好的游玩环境并为开发者提供良好的运算性能",
     },
   },
   // 项目数据
   projectsData: {
-    projectOne: {
-      title: "Awesome Project One",
+    core: {
+      title: "Crystelf-Core",
       description:
-        "一个革命性的工具，改变了我们处理现代 Web 开发的方式，以性能为核心构建。",
+        "我们为开发者打造的API服务,提供文件分发,同步,文案api等,使用MIT协议开源",
     },
-    phoenix: {
-      title: "Project Phoenix",
-      description: "一个创新的数据可视化库，使复杂的数据集变得易于理解和美观。",
-    },
-    goUtils: {
-      title: "Go-Utilities",
+    plugin: {
+      title: "Crystelf-Plugin",
       description:
-        "为 Go 开发者提供的一套基本的高性能实用函数集合，以简化工作流程。",
+        "为提升群聊聊天体验,我们为TRSS/Miao-Yunzai适配的插件.提供多数方便日常使用的重要功能,并与晶灵核心完美搭配",
+    },
+    ai: {
+      title: "Crystelf-AI",
+      description:
+        "我们为机器人打造的拟人化ai程序,通过规范ai返回结果实现多种功能,可扩展性强",
     },
   },
   // 导航链接数据

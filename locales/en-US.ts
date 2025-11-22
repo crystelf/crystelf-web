@@ -58,7 +58,7 @@ export const enUS = {
   // Services data
   servicesData: {
     core: {
-      title: "crystelf-core",
+      title: "Crystelf-Core",
       description:
         "Our API services are specially built for developers, open source and open public instances for use",
     },
@@ -68,46 +68,46 @@ export const enUS = {
         "A non-profit Yunzai-based bot service designed to provide a better chat experience for group members",
     },
     docs: {
-      title: "crystelf-docs",
+      title: "Crystelf-Docs",
       description:
         "Comprehensive documentation for all our projects and services, guiding you through every step",
     },
     drive: {
-      title: "crystelf-drive",
+      title: "Crystelf-Drive",
       description:
         "The cloud storage service built using the open-source OpenList relies on the Crystal Data Center (NAS) and the Crystal File Distribution Service (CDN) to provide users with stable and high-speed services",
     },
     lab: {
-      title: "crystelf-lab",
+      title: "Crystelf-Lab",
       description: "An open-source decentralized community built with Misskey",
     },
     gitea: {
-      title: "crystelf-gitea",
+      title: "Crystelf-Gitea",
       description:
         "An open-source code hosting service based on Gitea designed to solve the code hosting needs of community developers and optimize the problem of slow connection to github on Continental",
     },
     mc: {
-      title: "fograin-mc",
+      title: "Fograin-mc",
       description:
         "The Minecraft community hosted on the Crystelf game server provides a good playing environment for players and good computing performance for developers",
     },
   },
   // Projects data
   projectsData: {
-    projectOne: {
-      title: "Awesome Project One",
+    core: {
+      title: "Crystelf-Core",
       description:
-        "A revolutionary tool that changes how we approach modern web development, built with performance in mind.",
+        "We provide API services for developers, providing file distribution, synchronization, copywriting APIs, etc., using MIT protocol open source",
     },
-    phoenix: {
-      title: "Project Phoenix",
+    plugin: {
+      title: "Crystelf-Plugin",
       description:
-        "An innovative data visualization library that makes complex datasets understandable and beautiful.",
+        "To improve the group chat experience, we have adapted the plugin for TRSS/Miao-Yunzai. Provides most of the important functions for everyday use and pairs perfectly with the Crystelf-Core",
     },
-    goUtils: {
-      title: "Go-Utilities",
+    ai: {
+      title: "Crystelf-AI",
       description:
-        "A collection of essential, high-performance utility functions for Go developers to streamline their workflow.",
+        "Our anthropomorphic AI program for robots realizes multiple functions by standardizing the AI return results, and is highly scalable",
     },
   },
   // Navigation links data
