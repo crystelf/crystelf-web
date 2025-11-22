@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { motion } from "motion/react";
 import {
   CodeBracketIcon,
   CloudIcon,
@@ -11,26 +12,37 @@ import {
 } from "../constants";
 import { Service } from "../types";
 import { useLanguage } from "../contexts/LanguageContext";
-import useInViewAnimation from "../hooks/useInViewAnimation";
+import {
+  fadeInUpInitial,
+  fadeInUpAnimate,
+  viewportOptions,
+  cardHover,
+  cardTap,
+  getStaggerConfig,
+} from "../utils/animations";
 
 function ServiceCard({ service, index }: { service: Service; index: number }) {
-  const [cardRef, cardVisible] = useInViewAnimation<HTMLAnchorElement>();
-
   return (
-    <a
-      ref={cardRef}
+    <motion.a
       href={service.link}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group block p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 ${
-        cardVisible ? "animate-fade-in-up" : "before-fade-in-up"
-      }`}
-      style={{ animationDelay: `${index * 0.1}s` }}
+      className="group block p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl"
+      initial={fadeInUpInitial}
+      whileInView={fadeInUpAnimate}
+      viewport={viewportOptions}
+      transition={getStaggerConfig(index * 0.1)}
+      whileHover={cardHover}
+      whileTap={cardTap}
     >
       <div className="flex items-center space-x-4">
-        <div className="flex-shrink-0 text-blue-500 dark:text-blue-400">
+        <motion.div
+          className="flex-shrink-0 text-blue-500 dark:text-blue-400"
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
           {service.icon}
-        </div>
+        </motion.div>
         <div>
           <h3 className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {service.title}
@@ -40,7 +52,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       <p className="mt-4 text-slate-500 dark:text-slate-400">
         {service.description}
       </p>
-    </a>
+    </motion.a>
   );
 }
 
@@ -98,14 +110,20 @@ function ServicesSection() {
   return (
     <section id="services" className="py-20 bg-slate-100 dark:bg-slate-950">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <motion.div
+          className="text-center mb-12"
+          initial={fadeInUpInitial}
+          whileInView={fadeInUpAnimate}
+          viewport={viewportOptions}
+          transition={getStaggerConfig(0.1)}
+        >
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             {t.services.title}
           </h2>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
             {t.services.subtitle}
           </p>
-        </div>
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} index={index} />

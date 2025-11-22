@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Locale } from "@/locales";
+import { springConfig } from "../utils/animations";
 
 function GlobeIcon() {
   return (
@@ -115,55 +117,80 @@ function LanguageSelector() {
 
   return (
     <div className="relative">
-      <button
+      <motion.button
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-1.5 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900"
+        className="flex items-center space-x-1.5 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900"
         aria-label={t.language.select}
         aria-expanded={isOpen}
         aria-haspopup="true"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        transition={springConfig.snappy}
       >
         <GlobeIcon />
-        <ChevronDownIcon
-          className={`transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
-      </button>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={springConfig.snappy}
+        >
+          <ChevronDownIcon />
+        </motion.div>
+      </motion.button>
 
-      <div
-        ref={dropdownRef}
-        className={`absolute right-0 mt-2 w-48 sm:w-56 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-1 z-50 ${
-          isOpen
-            ? "opacity-100 translate-y-0 pointer-events-auto scale-100"
-            : "opacity-0 -translate-y-2 pointer-events-none scale-95"
-        } transition-all duration-200 ease-out origin-top-right`}
-        role="menu"
-        aria-orientation="vertical"
-      >
-        {languages.map((language) => (
-          <button
-            key={language.code}
-            onClick={() => handleLanguageChange(language.code)}
-            className={`w-full flex items-center justify-between px-4 py-2.5 text-sm transition-colors duration-150 ${
-              locale === language.code
-                ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium"
-                : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-            }`}
-            role="menuitem"
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            ref={dropdownRef}
+            className="absolute right-0 mt-2 w-48 sm:w-56 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-1 z-50 origin-top-right"
+            role="menu"
+            aria-orientation="vertical"
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={springConfig.snappy}
           >
-            <div className="flex flex-col items-start">
-              <span className="font-medium">{language.nativeName}</span>
-              <span className="text-xs text-slate-500 dark:text-slate-400">
-                {language.name}
-              </span>
-            </div>
-            {locale === language.code && (
-              <CheckIcon className="text-blue-600 dark:text-blue-400" />
-            )}
-          </button>
-        ))}
-      </div>
+            {languages.map((language, index) => (
+              <motion.button
+                key={language.code}
+                onClick={() => handleLanguageChange(language.code)}
+                className={`w-full flex items-center justify-between px-4 py-2.5 text-sm ${
+                  locale === language.code
+                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium"
+                    : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                }`}
+                role="menuitem"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  ...springConfig.snappy,
+                  delay: index * 0.05,
+                }}
+                whileHover={{ x: 4 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="flex flex-col items-start">
+                  <span className="font-medium">{language.nativeName}</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">
+                    {language.name}
+                  </span>
+                </div>
+                <AnimatePresence>
+                  {locale === language.code && (
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      transition={springConfig.snappy}
+                    >
+                      <CheckIcon className="text-blue-600 dark:text-blue-400" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
