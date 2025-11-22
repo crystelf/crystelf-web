@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => {
     preview: {
       port: 3777,
       host: "0.0.0.0",
+      allowedHosts: ['all']
     },
     plugins: [react()],
     define: {},
