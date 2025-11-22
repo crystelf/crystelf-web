@@ -127,8 +127,10 @@ function Header() {
                 className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={springConfig.default}
-                style={{ transitionDelay: `${index * 0.1}s` }}
+                transition={{
+                  ...springConfig.default,
+                  delay: 0.3 + index * 0.1,
+                }}
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
               >
