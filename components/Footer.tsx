@@ -1,5 +1,7 @@
 import React from "react";
+import { motion } from "motion/react";
 import { useLanguage } from "../contexts/LanguageContext";
+import { springConfig } from "../utils/animations";
 
 function GitHubIcon() {
   return (
@@ -22,25 +24,46 @@ function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+    <motion.footer
+      className="bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+      transition={springConfig.gentle}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <motion.p
+            className="text-sm text-slate-500 dark:text-slate-400"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={springConfig.default}
+          >
             &copy; {new Date().getFullYear()} crystelf. {t.footer.rights}
-          </p>
-          <div className="flex items-center space-x-6">
-            <a
+          </motion.p>
+          <motion.div
+            className="flex items-center space-x-6"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={springConfig.default}
+          >
+            <motion.a
               href="https://github.com/crystelf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+              transition={springConfig.snappy}
             >
               <GitHubIcon />
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }
 

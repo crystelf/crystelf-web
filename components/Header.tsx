@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
 import LanguageSelector from "./LanguageSelector";
 import { CrystelfLogo } from "@/constants.tsx";
+import { springConfig } from "../utils/animations";
 
 // SVG Icons
 function SunIcon() {
@@ -82,52 +84,84 @@ function Header() {
   ];
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg shadow-md" : "bg-transparent"}`}
+    <motion.header
+      className="sticky top-0 z-50"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={springConfig.snappy}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <AnimatePresence mode="wait">
+        {isScrolled && (
+          <motion.div
+            className="absolute inset-0 bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg shadow-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={springConfig.default}
+          />
+        )}
+      </AnimatePresence>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="flex items-center justify-between h-16">
-          <a
+          <motion.a
             href="#"
             className="flex items-center space-x-2 text-2xl font-bold text-blue-600 dark:text-blue-400"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={springConfig.snappy}
           >
-            <div className="flex-shrink-0 w-8 h-8">
-              {/* LogoIcon 组件 */}
+            <motion.div
+              className="flex-shrink-0 w-8 h-8"
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            >
               <CrystelfLogo />
-            </div>
+            </motion.div>
             <span>crystelf</span>
-          </a>
+          </motion.a>
           <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
+            {navLinks.map((link, index) => (
+              <motion.a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={springConfig.default}
+                style={{ transitionDelay: `${index * 0.1}s` }}
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
               >
                 {link.name}
-              </a>
+              </motion.a>
             ))}
           </nav>
           <div className="flex items-center space-x-3 sm:space-x-4">
             <LanguageSelector />
-            <a
+            <motion.a
               href="https://github.com/crystelf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+              transition={springConfig.snappy}
             >
               <GitHubIcon />
-            </a>
-            <button
+            </motion.a>
+            <motion.button
               onClick={toggleTheme}
-              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
+              whileHover={{ scale: 1.2, rotate: 15 }}
+              whileTap={{ scale: 0.9, rotate: 0 }}
+              transition={springConfig.snappy}
             >
               {theme === "light" ? <MoonIcon /> : <SunIcon />}
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }
 
