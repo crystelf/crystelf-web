@@ -6,19 +6,21 @@ import { useLanguage } from "../contexts/LanguageContext";
 import {
   fadeInUpInitial,
   fadeInUpAnimate,
+  fadeInTo,
   viewportOptions,
   cardHover,
   cardTap,
   getStaggerConfig,
   springConfig,
+  getFadeInitial,
 } from "../utils/animations";
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.div
       className="group flex flex-col p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl"
-      initial={fadeInUpInitial}
-      whileInView={fadeInUpAnimate}
+      initial={getFadeInitial(index % 3 === 0 ? "left" : index % 3 === 2 ? "right" : "up", 18)}
+      whileInView={fadeInTo}
       viewport={viewportOptions}
       transition={getStaggerConfig(index * 0.1)}
       whileHover={cardHover}

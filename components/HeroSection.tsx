@@ -19,14 +19,8 @@ function HeroSection() {
       <motion.div
         className="absolute inset-0 bg-gradient-radial from-blue-100/50 to-transparent dark:from-blue-900/30 dark:to-transparent"
         style={{ transform: "scale(1.5)" }}
-        animate={{
-          opacity: [0.5, 0.8, 0.5],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.h1
@@ -34,7 +28,7 @@ function HeroSection() {
           initial={fadeInUpInitial}
           whileInView={fadeInUpAnimate}
           viewport={viewportOptions}
-          transition={getStaggerConfig(0.1)}
+          transition={getStaggerConfig(0)}
         >
           {t.hero.welcome}{" "}
           <span className="text-blue-600 dark:text-blue-400">
@@ -46,7 +40,7 @@ function HeroSection() {
           initial={fadeInUpInitial}
           whileInView={fadeInUpAnimate}
           viewport={viewportOptions}
-          transition={getStaggerConfig(0.3)}
+          transition={getStaggerConfig(0.1)}
         >
           {t.hero.subtitle}
         </motion.p>
@@ -55,7 +49,7 @@ function HeroSection() {
           initial={fadeInUpInitial}
           whileInView={fadeInUpAnimate}
           viewport={viewportOptions}
-          transition={getStaggerConfig(0.5)}
+          transition={getStaggerConfig(0.2)}
         >
           <motion.a
             href="#services"

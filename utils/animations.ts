@@ -5,39 +5,34 @@
 
 // 弹性动画预设
 export const springConfig = {
-  // 默认弹性动画 - 自然流畅
   default: {
     type: "spring" as const,
-    stiffness: 300,
-    damping: 30,
+    stiffness: 260,
+    damping: 28,
     mass: 1,
   },
-  // 柔和弹性 - 适合大元素
   gentle: {
     type: "spring" as const,
     stiffness: 200,
-    damping: 25,
+    damping: 26,
     mass: 1,
   },
-  // 快速弹性 - 适合小元素和按钮
   snappy: {
     type: "spring" as const,
-    stiffness: 400,
-    damping: 25,
-    mass: 0.8,
+    stiffness: 420,
+    damping: 24,
+    mass: 0.85,
   },
-  // 弹性回弹 - 更明显的弹性效果
   bouncy: {
     type: "spring" as const,
     stiffness: 300,
     damping: 20,
     mass: 1,
   },
-  // 平滑过渡 - 接近线性但更自然
   smooth: {
     type: "spring" as const,
-    stiffness: 250,
-    damping: 30,
+    stiffness: 220,
+    damping: 32,
     mass: 1,
   },
 };
@@ -45,25 +40,32 @@ export const springConfig = {
 // 页面初始化动画配置
 export const pageInitial = {
   opacity: 0,
-  y: 20,
+  y: 10,
 };
 
 export const pageAnimate = {
   opacity: 1,
   y: 0,
-  transition: springConfig.default,
+  transition: { ...springConfig.smooth, delay: 0.05 },
 };
 
 // 元素进入视口动画配置
 export const fadeInUpInitial = {
   opacity: 0,
-  y: 30,
+  y: 20,
 };
 
 export const fadeInUpAnimate = {
   opacity: 1,
   y: 0,
-  transition: springConfig.default,
+  transition: springConfig.gentle,
+};
+
+export const fadeInTo = {
+  opacity: 1,
+  x: 0,
+  y: 0,
+  transition: springConfig.smooth,
 };
 
 // 卡片悬停动画
@@ -93,13 +95,23 @@ export const buttonTap = {
 // 视口进入动画配置（用于 Intersection Observer）
 export const viewportOptions = {
   once: true,
-  margin: "0px 0px -10% 0px",
-  amount: 0.2,
+  margin: "0px 0px -20% 0px",
+  amount: 0.3,
 };
 
 // 延迟动画配置（用于列表项）
 export const getStaggerConfig = (delay: number = 0.1) => ({
-  ...springConfig.default,
+  ...springConfig.smooth,
   delay,
 });
+
+export const getFadeInitial = (
+  direction: "up" | "left" | "right" = "up",
+  distance: number = 20,
+) => {
+  const base = { opacity: 0 } as { opacity: number; x?: number; y?: number };
+  if (direction === "up") return { ...base, y: distance };
+  if (direction === "left") return { ...base, x: -distance };
+  return { ...base, x: distance };
+};
 

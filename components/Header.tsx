@@ -86,9 +86,9 @@ function Header() {
   return (
     <motion.header
       className="sticky top-0 z-50"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={springConfig.snappy}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={springConfig.smooth}
     >
       <AnimatePresence mode="wait">
         {isScrolled && (
