@@ -15,6 +15,15 @@ body,
 body {
   font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top, rgb(191 219 254 / 0.28), transparent 34%),
+    linear-gradient(180deg, rgb(248 250 252) 0%, rgb(241 245 249) 100%);
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at top, rgb(30 64 175 / 0.18), transparent 38%),
+    linear-gradient(180deg, rgb(2 6 23) 0%, rgb(15 23 42) 100%);
 }
 
 @layer utilities {
@@ -24,5 +33,197 @@ body {
 
   .bg-gradient-radial {
     background-image: radial-gradient(var(--tw-gradient-stops));
+  }
+
+  .intro-item {
+    animation: intro-rise 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--enter-delay, 0ms);
+    will-change: transform, opacity;
+  }
+
+  .reveal {
+    --reveal-x: 0px;
+    --reveal-y: 18px;
+    --reveal-scale: 0.985;
+    animation: reveal-in 820ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--reveal-delay, 0ms);
+    will-change: transform, opacity;
+  }
+
+  .soft-reveal {
+    --reveal-x: 0px;
+    --reveal-y: 18px;
+    --reveal-scale: 0.992;
+    opacity: 0.78;
+    transform: translate3d(var(--reveal-x), var(--reveal-y), 0)
+      scale(var(--reveal-scale));
+    transition:
+      opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 720ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 320ms ease,
+      border-color 320ms ease;
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: transform, opacity;
+  }
+
+  .soft-reveal[data-in-view="true"] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .reveal-up {
+    --reveal-y: 24px;
+  }
+
+  .reveal-left {
+    --reveal-x: -28px;
+    --reveal-y: 10px;
+  }
+
+  .reveal-right {
+    --reveal-x: 28px;
+    --reveal-y: 10px;
+  }
+
+  .tag-reveal {
+    animation: tag-in 560ms cubic-bezier(0.2, 0.9, 0.25, 1) both;
+    animation-delay: var(--tag-delay, 0ms);
+  }
+
+  .dropdown-panel {
+    animation: dropdown-enter 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    will-change: transform, opacity;
+  }
+
+  .dropdown-item {
+    animation: dropdown-item-enter 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--enter-delay, 0ms);
+    will-change: transform, opacity;
+  }
+
+  .surface-card {
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .surface-card:hover {
+    transform: scale(1.018);
+  }
+
+  .surface-card:active {
+    transform: scale(0.992);
+  }
+
+  .hero-glow {
+    animation: hero-glow 12s ease-in-out infinite alternate;
+  }
+
+  .hero-glow-delay {
+    animation: hero-glow 15s ease-in-out infinite alternate-reverse;
+    animation-delay: 1.2s;
+  }
+}
+
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0) scale(0.985);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--reveal-x), var(--reveal-y), 0)
+      scale(var(--reveal-scale));
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes tag-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes dropdown-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes dropdown-item-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes hero-glow {
+  from {
+    opacity: 0.5;
+    transform: translate3d(0, 0, 0) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, -10px, 0) scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .intro-item,
+  .reveal,
+  .soft-reveal,
+  .tag-reveal,
+  .dropdown-panel,
+  .dropdown-item,
+  .hero-glow,
+  .hero-glow-delay {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .surface-card,
+  .surface-card:hover {
+    transform: none;
+    transition: none;
   }
 }

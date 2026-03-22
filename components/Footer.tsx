@@ -1,7 +1,7 @@
 import React from "react";
-import { motion } from "motion/react";
 import { useLanguage } from "../contexts/LanguageContext";
-import { springConfig } from "../utils/animations";
+import useInViewAnimation from "../hooks/useInViewAnimation";
+import { revealViewport } from "../utils/animations";
 
 function GitHubIcon() {
   return (
@@ -22,48 +22,36 @@ function GitHubIcon() {
 
 function Footer() {
   const { t } = useLanguage();
+  const [footerRef, footerVisible] = useInViewAnimation<HTMLElement>({
+    ...revealViewport,
+    rootMargin: "0px 0px 18% 0px",
+    threshold: 0.04,
+  });
 
   return (
-    <motion.footer
-      className="bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-      transition={springConfig.gentle}
+    <footer
+      ref={footerRef}
+      data-in-view={footerVisible}
+      className="soft-reveal border-t border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-950"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <motion.p
-            className="text-sm text-slate-500 dark:text-slate-400"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={springConfig.default}
-          >
+          <p className="text-sm text-slate-500 dark:text-slate-400">
             &copy; {new Date().getFullYear()} crystelf. {t.footer.rights}
-          </motion.p>
-          <motion.div
-            className="flex items-center space-x-6"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={springConfig.default}
-          >
-            <motion.a
+          </p>
+          <div className="flex items-center space-x-6">
+            <a
               href="https://github.com/crystelf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              transition={springConfig.snappy}
+              className="text-slate-500 transition duration-200 hover:-translate-y-0.5 hover:scale-110 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
             >
               <GitHubIcon />
-            </motion.a>
-          </motion.div>
+            </a>
+          </div>
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 }
 

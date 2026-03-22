@@ -1,7 +1,7 @@
 import React, {
   createContext,
   useState,
-  useEffect,
+  useLayoutEffect,
   useContext,
   ReactNode,
 } from "react";
@@ -36,7 +36,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [theme, setTheme] = useState<Theme>(() => getInitialTheme());
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = document.documentElement;
     if (!root) {
       return;

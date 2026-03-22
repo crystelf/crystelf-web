@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Locale } from "@/locales";
-import { springConfig } from "../utils/animations";
 
 function GlobeIcon() {
   return (
@@ -72,6 +70,7 @@ function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const currentLanguage = languages.find((lang) => lang.code === locale) ?? languages[0];
 
   // 点击外部关闭下拉菜单
   useEffect(() => {
@@ -117,80 +116,69 @@ function LanguageSelector() {
 
   return (
     <div className="relative">
-      <motion.button
+      <button
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-1.5 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900"
+        className="flex items-center gap-2 rounded-xl px-3 py-2 text-slate-500 transition-[transform,color,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.04] hover:bg-white/70 hover:text-blue-600 hover:shadow-sm dark:text-slate-400 dark:hover:bg-slate-800/70 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 active:scale-[0.98]"
         aria-label={t.language.select}
         aria-expanded={isOpen}
         aria-haspopup="true"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={springConfig.snappy}
       >
         <GlobeIcon />
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={springConfig.snappy}
+        <span className="hidden text-sm font-medium sm:inline">
+          {currentLanguage.nativeName}
+        </span>
+        <div
+          className={`transition duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isOpen ? "rotate-180" : ""
+          }`}
         >
           <ChevronDownIcon />
-        </motion.div>
-      </motion.button>
+        </div>
+      </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            ref={dropdownRef}
-            className="absolute right-0 mt-2 w-48 sm:w-56 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 py-1 z-50 origin-top-right"
-            role="menu"
-            aria-orientation="vertical"
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={springConfig.snappy}
-          >
-            {languages.map((language, index) => (
-              <motion.button
-                key={language.code}
-                onClick={() => handleLanguageChange(language.code)}
-                className={`w-full flex items-center justify-between px-4 py-2.5 text-sm ${
+      {isOpen && (
+        <div
+          ref={dropdownRef}
+          className="dropdown-panel absolute right-0 z-50 mt-2 w-52 origin-top-right rounded-2xl border border-slate-200/80 bg-white/95 p-1.5 shadow-xl shadow-slate-200/60 backdrop-blur-xl dark:border-slate-700/80 dark:bg-slate-800/95 dark:shadow-slate-950/40 sm:w-60"
+          role="menu"
+          aria-orientation="vertical"
+        >
+          {languages.map((language, index) => (
+            <button
+              key={language.code}
+              onClick={() => handleLanguageChange(language.code)}
+              className={`dropdown-item flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm transition-[transform,color,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.01] active:scale-[0.99] ${
+                locale === language.code
+                  ? "bg-blue-50/90 font-medium text-blue-600 shadow-sm shadow-blue-100/80 dark:bg-blue-900/25 dark:text-blue-400 dark:shadow-blue-950/20"
+                  : "text-slate-700 hover:bg-slate-100/90 dark:text-slate-300 dark:hover:bg-slate-700/80"
+              }`}
+              role="menuitem"
+              style={
+                {
+                  "--enter-delay": `${index * 45}ms`,
+                } as React.CSSProperties
+              }
+            >
+              <div className="flex flex-col items-start">
+                <span className="font-medium">{language.nativeName}</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  {language.name}
+                </span>
+              </div>
+              <span
+                className={`transition duration-200 ${
                   locale === language.code
-                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium"
-                    : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                    ? "scale-100 opacity-100"
+                    : "scale-0 opacity-0"
                 }`}
-                role="menuitem"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                  ...springConfig.snappy,
-                  delay: index * 0.05,
-                }}
-                whileHover={{ x: 4 }}
-                whileTap={{ scale: 0.98 }}
               >
-                <div className="flex flex-col items-start">
-                  <span className="font-medium">{language.nativeName}</span>
-                  <span className="text-xs text-slate-500 dark:text-slate-400">
-                    {language.name}
-                  </span>
-                </div>
-                <AnimatePresence>
-                  {locale === language.code && (
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0, opacity: 0 }}
-                      transition={springConfig.snappy}
-                    >
-                      <CheckIcon className="text-blue-600 dark:text-blue-400" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.button>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <CheckIcon className="text-blue-600 dark:text-blue-400" />
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

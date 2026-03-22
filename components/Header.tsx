@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
 import LanguageSelector from "./LanguageSelector";
 import { CrystelfLogo } from "@/constants.tsx";
-import { springConfig } from "../utils/animations";
+import { getIntroDelay } from "../utils/animations";
 
 // SVG Icons
 function SunIcon() {
@@ -72,6 +71,8 @@ function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -84,86 +85,58 @@ function Header() {
   ];
 
   return (
-    <motion.header
-      className="sticky top-0 z-50"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={springConfig.smooth}
-    >
-      <AnimatePresence mode="wait">
-        {isScrolled && (
-          <motion.div
-            className="absolute inset-0 bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg shadow-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={springConfig.default}
-          />
-        )}
-      </AnimatePresence>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="flex items-center justify-between h-16">
-          <motion.a
+    <header className="sticky top-0 z-50">
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          className={`intro-item mt-3 flex h-16 items-center justify-between transition-all duration-300 ${
+            isScrolled
+              ? "rounded-2xl bg-white/72 px-4 shadow-lg shadow-slate-200/50 ring-1 ring-slate-900/5 backdrop-blur-xl dark:bg-slate-900/72 dark:shadow-slate-950/40 dark:ring-white/10"
+              : "px-0"
+          }`}
+          style={getIntroDelay(0)}
+        >
+          <a
             href="#"
-            className="flex items-center space-x-2 text-2xl font-bold text-blue-600 dark:text-blue-400"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={springConfig.snappy}
+            className="group flex items-center space-x-2 text-2xl font-bold text-blue-600 dark:text-blue-400"
           >
-            <motion.div
-              className="flex-shrink-0 w-8 h-8"
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-            >
+            <div className="h-8 w-8 shrink-0 transition duration-500 group-hover:rotate-360">
               <CrystelfLogo />
-            </motion.div>
+            </div>
             <span>crystelf</span>
-          </motion.a>
+          </a>
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link, index) => (
-              <motion.a
+              <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  ...springConfig.default,
-                  delay: 0.3 + index * 0.1,
-                }}
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
+                className="group intro-item relative text-sm font-medium text-slate-600 transition duration-200 hover:-translate-y-0.5 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
+                style={getIntroDelay(220 + index * 70)}
               >
                 {link.name}
-              </motion.a>
+                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current opacity-70 transition-transform duration-300 group-hover:scale-x-100" />
+              </a>
             ))}
           </nav>
           <div className="flex items-center space-x-3 sm:space-x-4">
             <LanguageSelector />
-            <motion.a
+            <a
               href="https://github.com/crystelf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              transition={springConfig.snappy}
+              className="rounded-full p-2 text-slate-500 transition duration-200 hover:-translate-y-0.5 hover:scale-110 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
             >
               <GitHubIcon />
-            </motion.a>
-            <motion.button
+            </a>
+            <button
               onClick={toggleTheme}
-              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
-              whileHover={{ scale: 1.2, rotate: 15 }}
-              whileTap={{ scale: 0.9, rotate: 0 }}
-              transition={springConfig.snappy}
+              className="rounded-full p-2 text-slate-500 transition duration-200 hover:-translate-y-0.5 hover:scale-110 hover:rotate-12 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
             >
               {theme === "light" ? <MoonIcon /> : <SunIcon />}
-            </motion.button>
+            </button>
           </div>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }
 

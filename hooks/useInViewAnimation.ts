@@ -4,10 +4,6 @@ type Options = IntersectionObserverInit & {
   once?: boolean;
 };
 
-/**
- * Returns a ref and visibility flag that turns true once the element enters the viewport.
- * Use it to defer triggering entrance animations until the element is scrolled into view.
- */
 function useInViewAnimation<T extends HTMLElement = HTMLElement>(options?: Options) {
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<T | null>(null);
@@ -15,8 +11,8 @@ function useInViewAnimation<T extends HTMLElement = HTMLElement>(options?: Optio
   const {
     once = true,
     root = null,
-    rootMargin = "0px 0px -10% 0px",
-    threshold = 0.2,
+    rootMargin = "0px 0px 28% 0px",
+    threshold = 0.08,
   } = options || {};
 
   useEffect(() => {
@@ -38,10 +34,11 @@ function useInViewAnimation<T extends HTMLElement = HTMLElement>(options?: Optio
           }
         });
       },
-      { root, rootMargin, threshold }
+      { root, rootMargin, threshold },
     );
 
     observer.observe(node);
+
     return () => observer.disconnect();
   }, [
     once,
@@ -54,4 +51,3 @@ function useInViewAnimation<T extends HTMLElement = HTMLElement>(options?: Optio
 }
 
 export default useInViewAnimation;
-
