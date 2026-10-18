@@ -4,7 +4,6 @@
 - React 19 + TypeScript
 - Vite 6 (with React plugin)
 - Tailwind CSS 4 (via `@tailwindcss/postcss`)
-- Motion animation library
 - PostCSS + Autoprefixer
 - Prettier
 - PNPM (lockfile present)

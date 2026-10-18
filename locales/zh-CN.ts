@@ -3,7 +3,6 @@ export const zhCN = {
   nav: {
     services: "服务",
     projects: "项目",
-    navigation: "导航",
     about: "关于",
   },
   // 首页
@@ -25,14 +24,6 @@ export const zhCN = {
     title: "开源项目",
     subtitle:
       "从面向开发者和社区的开发工具到面向用户的前端工程,我们开源的项目涵盖软件开发的各个方面",
-  },
-  // 导航部分
-  navigation: {
-    title: "网址导航",
-    subtitle: "快速导航到我们的服务页面及相关网页",
-    checking: "Checking...",
-    online: "Online",
-    offline: "Offline",
   },
   // 关于部分
   about: {
@@ -106,25 +97,6 @@ export const zhCN = {
       title: "Crystelf-AI",
       description:
         "我们为机器人打造的拟人化ai程序,通过规范ai返回结果实现多种功能,可扩展性强",
-    },
-  },
-  // 导航链接数据
-  navLinksData: {
-    officialWebsite: {
-      name: "官方网站",
-      description: "我们的主要门户和主页。",
-    },
-    githubOrg: {
-      name: "GitHub 组织",
-      description: "探索我们的源代码并做出贡献。",
-    },
-    coreProject: {
-      name: "核心项目",
-      description: "核心框架仓库。",
-    },
-    documentation: {
-      name: "文档",
-      description: "项目文档和指南。",
     },
   },
 };

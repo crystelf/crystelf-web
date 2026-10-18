@@ -3,7 +3,6 @@ export const enUS = {
   nav: {
     services: "Services",
     projects: "Projects",
-    navigation: "Navigation",
     about: "About",
   },
   // Hero section
@@ -26,14 +25,6 @@ export const enUS = {
     title: "Project Showcase",
     subtitle:
       "From developer-oriented and community-oriented development tools to user-oriented front-end engineering, our open-source projects cover all aspects of software development",
-  },
-  // Navigation section
-  navigation: {
-    title: "Service Navigation",
-    subtitle: "Quick navigation to our service page and related pages",
-    checking: "Checking...",
-    online: "Online",
-    offline: "Offline",
   },
   // About section
   about: {
@@ -108,25 +99,6 @@ export const enUS = {
       title: "Crystelf-AI",
       description:
         "Our anthropomorphic AI program for robots realizes multiple functions by standardizing the AI return results, and is highly scalable",
-    },
-  },
-  // Navigation links data
-  navLinksData: {
-    officialWebsite: {
-      name: "Official Website",
-      description: "Our main portal and homepage.",
-    },
-    githubOrg: {
-      name: "GitHub Organization",
-      description: "Explore our source code and contribute.",
-    },
-    coreProject: {
-      name: "Core Project",
-      description: "The core framework repository.",
-    },
-    documentation: {
-      name: "Documentation",
-      description: "Project documentation and guides.",
     },
   },
 };

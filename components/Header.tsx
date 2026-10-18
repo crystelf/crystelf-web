@@ -80,7 +80,6 @@ function Header() {
   const navLinks = [
     { name: t.nav.services, href: "#services" },
     { name: t.nav.projects, href: "#projects" },
-    { name: t.nav.navigation, href: "#navigation" },
     { name: t.nav.about, href: "#about" },
   ];
 
