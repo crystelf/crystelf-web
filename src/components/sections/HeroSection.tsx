@@ -1,52 +1,86 @@
+import { GitHubIcon } from "@/components/icons";
+import { ButtonLink } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { GITHUB_ORG_URL } from "@/data/site";
 import { useReveal } from "@/hooks/useReveal";
 
-function HeroSection() {
+function HeroTerminal() {
   const { t } = useLanguage();
-  const titleReveal = useReveal<HTMLHeadingElement>();
-  const subtitleReveal = useReveal<HTMLParagraphElement>(1);
-  const actionsReveal = useReveal<HTMLDivElement>(2);
+  const reveal = useReveal<HTMLDivElement>(4);
+  const { title, session } = t.hero.terminal;
 
   return (
-    <section className="relative py-24 md:py-32 lg:py-48 text-center overflow-hidden bg-white dark:bg-slate-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <h1
-          {...titleReveal}
-          className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl dark:text-slate-100"
-        >
-          {t.hero.welcome}{" "}
-          <span className="text-blue-600 dark:text-blue-400">
-            {t.hero.welcome2}
-          </span>
-        </h1>
-        <p
-          {...subtitleReveal}
-          className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-300"
-        >
-          {t.hero.subtitle}
-        </p>
-        <div
-          {...actionsReveal}
-          className="mt-8 flex flex-col justify-center gap-4 sm:flex-row"
-        >
-          <a
-            href="#services"
-            className="inline-flex items-center justify-center rounded-md bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-lg shadow-blue-600/20 transition duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-600/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          >
-            {t.hero.exploreServices}
-          </a>
-          <a
-            href="https://github.com/crystelf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-md bg-slate-200 px-6 py-3 text-base font-medium text-slate-700 shadow-lg shadow-slate-300/40 transition duration-300 hover:-translate-y-1 hover:bg-slate-300 hover:shadow-xl dark:bg-slate-800 dark:text-slate-200 dark:shadow-slate-950/30 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
-          >
-            {t.hero.viewOnGitHub}
-          </a>
-        </div>
+    <div {...reveal} aria-hidden="true" className="min-w-0 border border-line bg-surface shadow-offset">
+      <div className="flex items-center gap-2 border-b border-line px-4 py-2">
+        <span className="size-2.5 shrink-0 border border-line-strong" />
+        <span className="size-2.5 shrink-0 border border-line-strong" />
+        <span className="size-2.5 shrink-0 border border-line-strong" />
+        <span className="label-mono ml-2 min-w-0">{title}</span>
       </div>
-    </section>
+      <div className="flex flex-col gap-4 bg-surface blueprint-grid p-5 font-mono text-sm whitespace-pre-wrap md:p-6">
+        {session.map((entry) => (
+          <div key={entry.command}>
+            <p className="text-fg">
+              <span className="text-accent">{"$ "}</span>
+              {entry.command}
+            </p>
+            {entry.output.map((line, index) => (
+              <p key={index} className="text-fg-muted">
+                {line}
+              </p>
+            ))}
+          </div>
+        ))}
+        <p className="text-fg">
+          <span className="text-accent">{"$ "}</span>
+          <span className="term-cursor" />
+        </p>
+      </div>
+    </div>
   );
 }
 
-export default HeroSection;
+export function HeroSection() {
+  const { t } = useLanguage();
+  const label = useReveal<HTMLParagraphElement>();
+  const title = useReveal<HTMLHeadingElement>(1);
+  const lead = useReveal<HTMLParagraphElement>(2);
+  const actions = useReveal<HTMLDivElement>(3);
+
+  return (
+    <section id="hero" aria-labelledby="hero-title">
+      <Container className="grid gap-12 py-16 md:py-24 lg:grid-cols-2 lg:items-center">
+        <div className="min-w-0">
+          <p {...label} className="label-mono">
+            <span className="text-accent" aria-hidden="true">
+              {"// "}
+            </span>
+            {t.hero.label}
+          </p>
+          <h1
+            {...title}
+            id="hero-title"
+            className="mt-4 text-4xl font-semibold tracking-tight md:text-6xl"
+          >
+            {t.hero.titleLead}{" "}
+            <span className="block text-accent">{t.hero.titleAccent}</span>
+          </h1>
+          <p {...lead} className="mt-6 max-w-text text-base text-fg-muted md:text-lg">
+            {t.hero.lead}
+          </p>
+          <div {...actions} className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href="#services" variant="primary">
+              {t.hero.primaryAction}
+            </ButtonLink>
+            <ButtonLink href={GITHUB_ORG_URL} variant="secondary" external>
+              <GitHubIcon className="size-4 shrink-0" />
+              {t.hero.secondaryAction}
+            </ButtonLink>
+          </div>
+        </div>
+        <HeroTerminal />
+      </Container>
+    </section>
+  );
+}
