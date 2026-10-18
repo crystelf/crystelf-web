@@ -1,108 +1,97 @@
-export const enUS = {
+import type { zhCN } from "@/locales/zh-CN";
+
+export const enUS: typeof zhCN = {
   meta: {
     title: "Crystelf",
-    description: "The official website of Crystelf.",
+    description:
+      "Crystelf is a community-driven team that builds open-source software and runs non-profit services for the community.",
+    ogTitle: "Crystelf",
+    ogDescription: "Community-driven open-source software and non-profit services.",
   },
-  // Navigation
+  brand: {
+    name: "Crystelf",
+    latinName: "Crystelf",
+  },
+  a11y: {
+    skipToContent: "Skip to main content",
+    openInNewTab: "(opens in a new tab)",
+    mainNav: "Main",
+    menu: "Site menu",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    githubLink: "Crystelf on GitHub",
+  },
   nav: {
     services: "Services",
     projects: "Projects",
     about: "About",
   },
-  // Hero section
-  hero: {
-    welcome: "Build open source",
-    welcome2: "public services",
-    subtitle:
-      "Crystelf is committed to building high-quality open source services, providing good software and hardware support for the community and global developers, and making creative tools and projects more efficient",
-    exploreServices: "Explore Services",
-    viewOnGitHub: "View on GitHub",
+  theme: {
+    dark: "Dark mode",
   },
-  // Services section
-  services: {
-    title: "Our Products & Services",
-    subtitle:
-      "We are proud to maintain public services with love and power generation",
-  },
-  // Projects showcase
-  projects: {
-    title: "Project Showcase",
-    subtitle:
-      "From developer-oriented and community-oriented development tools to user-oriented front-end engineering, our open-source projects cover all aspects of software development",
-  },
-  // About section
-  about: {
-    title: "About Crystelf",
-    description:
-      "crystelf is a passionate, community-driven organization focused on creating high-quality, open-source software and public services. Our mission is to build tools that are not only powerful and efficient but also free and accessible to everyone. We believe in the power of collaboration and strive to foster a welcoming environment for contributors from all backgrounds.",
-    contactUs: "Contact Us",
-    contactDescription:
-      "The best way to get in touch is through our QQ group or by opening an issue on our GitHub repositories. We look forward to hearing from you!",
-    joinConversation: "Join the Conversation",
-  },
-  // Footer
-  footer: {
-    rights: "All Rights Reserved.",
-  },
-  // Language selector
   language: {
-    select: "Select Language",
+    select: "Language",
     chinese: "简体中文",
     english: "English",
+    chineseShort: "中文",
+    englishShort: "EN",
   },
-  // Services data
-  servicesData: {
-    core: {
-      title: "Crystelf-Core",
-      description:
-        "Our API services are specially built for developers, open source and open public instances for use",
-    },
-    cloudRobot: {
-      title: "TRSS-Yunzai Public Robot",
-      description:
-        "A non-profit Yunzai-based bot service designed to provide a better chat experience for group members",
-    },
-    docs: {
-      title: "Crystelf-Docs",
-      description:
-        "Comprehensive documentation for all our projects and services, guiding you through every step",
-    },
-    drive: {
-      title: "Crystelf-Drive",
-      description:
-        "The cloud storage service built using the open-source OpenList relies on the Crystal Data Center (NAS) and the Crystal File Distribution Service (CDN) to provide users with stable and high-speed services",
-    },
-    lab: {
-      title: "Crystelf-Lab",
-      description: "An open-source decentralized community built with Misskey",
-    },
-    gitea: {
-      title: "Crystelf-Gitea",
-      description:
-        "An open-source code hosting service based on Gitea designed to solve the code hosting needs of community developers and optimize the problem of slow connection to github on Continental",
-    },
-    mc: {
-      title: "Fograin-mc",
-      description:
-        "The Minecraft community hosted on the Crystelf game server provides a good playing environment for players and good computing performance for developers",
+  hero: {
+    label: "community-driven open source",
+    titleLead: "Building open source",
+    titleAccent: "for the community",
+    lead: "Crystelf is a community-driven team. We build open-source software and run non-profit services, giving developers and the wider community the tools and infrastructure they need to get more done.",
+    primaryAction: "Explore services",
+    secondaryAction: "View on GitHub",
+    terminal: {
+      title: "~/crystelf",
+      session: [
+        { command: "whoami", output: ["Crystelf"] },
+        {
+          command: "cat ./mission.txt",
+          output: [
+            "Build open-source software.",
+            "Run non-profit services.",
+            "Make creative work easier.",
+          ],
+        },
+        { command: "ls", output: ["services/  projects/  about/"] },
+      ],
     },
   },
-  // Projects data
-  projectsData: {
-    core: {
-      title: "Crystelf-Core",
-      description:
-        "We provide API services for developers, providing file distribution, synchronization, copywriting APIs, etc., using MIT protocol open source",
-    },
-    plugin: {
-      title: "Crystelf-Plugin",
-      description:
-        "To improve the group chat experience, we have adapted the plugin for TRSS/Miao-Yunzai. Provides most of the important functions for everyday use and pairs perfectly with the Crystelf-Core",
-    },
-    ai: {
-      title: "Crystelf-AI",
-      description:
-        "Our anthropomorphic AI program for robots realizes multiple functions by standardizing the AI return results, and is highly scalable",
-    },
+  services: {
+    label: "services",
+    title: "Community services",
+    subtitle: "Non-profit services that Crystelf and our community maintain together.",
+    emptyCommand: "ls ./services",
+    itemAction: "Visit service",
+  },
+  projects: {
+    label: "projects",
+    title: "Open-source projects",
+    subtitle:
+      "From tools for developers and communities to user-facing front ends, we build every project in the open.",
+    emptyCommand: "ls ./projects",
+    itemAction: "View source",
+  },
+  emptyState: {
+    comingSoon: "Coming soon",
+    description: "We're still putting this together. It will show up here once it's live.",
+  },
+  about: {
+    label: "about",
+    title: "About Crystelf",
+    body: [
+      "Crystelf is a community-driven organization focused on open-source software and non-profit services. We want to build tools that are powerful and efficient, and free for as many people as possible to use.",
+      "We believe in the power of collaboration, and we welcome contributors from every background to help keep our community a friendly place.",
+    ],
+    contactCommand: "cat ./contact",
+    contactComingSoon: "Contact details coming soon",
+    contactDescription:
+      "We're setting up our contact channels and will list them here once they're ready.",
+  },
+  footer: {
+    owner: "Crystelf",
+    github: "GitHub",
   },
 };

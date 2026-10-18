@@ -11,6 +11,3 @@ export const translations: Record<Locale, Translations> = {
 };
 
 export { zhCN, enUS };
-
-
-

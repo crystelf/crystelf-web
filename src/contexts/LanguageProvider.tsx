@@ -53,8 +53,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = locale;
     document.title = t.meta.title;
     setMetaContent('meta[name="description"]', t.meta.description);
-    setMetaContent('meta[property="og:title"]', t.meta.title);
-    setMetaContent('meta[property="og:description"]', t.meta.description);
+    setMetaContent('meta[property="og:title"]', t.meta.ogTitle);
+    setMetaContent('meta[property="og:description"]', t.meta.ogDescription);
     setMetaContent('meta[property="og:locale"]', locale.replace("-", "_"));
   }, [locale, t]);
 
