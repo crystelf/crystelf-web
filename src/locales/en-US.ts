@@ -1,4 +1,8 @@
 export const enUS = {
+  meta: {
+    title: "Crystelf",
+    description: "The official website of Crystelf.",
+  },
   // Navigation
   nav: {
     services: "Services",

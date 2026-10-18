@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crystelf Studio</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>晶灵工作室 | Crystelf</title>
+    <meta name="description" content="晶灵工作室(Crystelf)官方网站。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Crystelf" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:title" content="晶灵工作室 | Crystelf" />
+    <meta property="og:description" content="晶灵工作室(Crystelf)官方网站。" />
+    <meta name="theme-color" content="#071426" />
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var theme = null;
+            try {
+                theme = localStorage.getItem("theme");
+            } catch (e) {}
+            if (theme !== "light" && theme !== "dark") {
+                theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            root.classList.toggle("dark", theme === "dark");
+            root.style.colorScheme = theme;
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) {
+                meta.setAttribute("content", theme === "dark" ? "#071426" : "#eef3fa");
+            }
+        })();
+    </script>
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 <body>
 <div id="root"></div>

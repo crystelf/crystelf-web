@@ -1,4 +1,8 @@
 export const zhCN = {
+  meta: {
+    title: "晶灵工作室 | Crystelf",
+    description: "晶灵工作室(Crystelf)官方网站。",
+  },
   // 导航
   nav: {
     services: "服务",
