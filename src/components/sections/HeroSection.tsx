@@ -1,17 +1,18 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getIntroDelay } from "@/utils/animations";
+import { useReveal } from "@/hooks/useReveal";
 
 function HeroSection() {
   const { t } = useLanguage();
+  const titleReveal = useReveal<HTMLHeadingElement>();
+  const subtitleReveal = useReveal<HTMLParagraphElement>(1);
+  const actionsReveal = useReveal<HTMLDivElement>(2);
 
   return (
     <section className="relative py-24 md:py-32 lg:py-48 text-center overflow-hidden bg-white dark:bg-slate-900">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-radial from-blue-100/60 via-blue-50/25 to-transparent dark:from-blue-900/35 dark:via-slate-900 dark:to-transparent hero-glow" />
-      <div className="pointer-events-none absolute left-1/2 top-8 h-64 w-64 -translate-x-1/2 rounded-full bg-blue-300/20 blur-3xl hero-glow-delay dark:bg-blue-500/10" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <h1
-          className="intro-item text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl dark:text-slate-100"
-          style={getIntroDelay(40)}
+          {...titleReveal}
+          className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl dark:text-slate-100"
         >
           {t.hero.welcome}{" "}
           <span className="text-blue-600 dark:text-blue-400">
@@ -19,14 +20,14 @@ function HeroSection() {
           </span>
         </h1>
         <p
+          {...subtitleReveal}
           className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-300"
-          style={getIntroDelay(160)}
         >
           {t.hero.subtitle}
         </p>
         <div
-          className="intro-item mt-8 flex flex-col justify-center gap-4 sm:flex-row"
-          style={getIntroDelay(280)}
+          {...actionsReveal}
+          className="mt-8 flex flex-col justify-center gap-4 sm:flex-row"
         >
           <a
             href="#services"

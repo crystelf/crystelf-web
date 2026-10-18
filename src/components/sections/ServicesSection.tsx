@@ -10,26 +10,18 @@ import {
 } from "@/components/icons";
 import { Service } from "@/types";
 import { useLanguage } from "@/contexts/LanguageContext";
-import useInViewAnimation from "@/hooks/useInViewAnimation";
-import {
-  getRevealDelay,
-  getRevealDirection,
-  revealViewport,
-} from "@/utils/animations";
+import { useReveal } from "@/hooks/useReveal";
 
 function ServiceCard({ service, index }: { service: Service; index: number }) {
-  const [cardRef, cardVisible] =
-    useInViewAnimation<HTMLAnchorElement>(revealViewport);
+  const reveal = useReveal<HTMLAnchorElement>(index);
 
   return (
     <a
-      ref={cardRef}
+      {...reveal}
       href={service.link}
       target="_blank"
       rel="noopener noreferrer"
-      data-in-view={cardVisible}
-      className={`soft-reveal ${getRevealDirection(index)} surface-card group block rounded-2xl bg-white/95 p-6 shadow-lg shadow-slate-200/60 dark:bg-slate-800/95 dark:shadow-slate-950/30`}
-      style={getRevealDelay(index * 90 + 120)}
+      className={`group block rounded-2xl bg-white/95 p-6 shadow-lg shadow-slate-200/60 dark:bg-slate-800/95 dark:shadow-slate-950/30`}
     >
       <div className="relative flex items-center space-x-4">
         <div className="shrink-0 text-blue-500 transition duration-300 group-hover:scale-110 group-hover:rotate-3 dark:text-blue-400">
@@ -50,8 +42,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
 
 function ServicesSection() {
   const { t } = useLanguage();
-  const [headerRef, headerVisible] =
-    useInViewAnimation<HTMLDivElement>(revealViewport);
+  const headerReveal = useReveal<HTMLDivElement>();
 
   const services: Service[] = useMemo(
     () => [
@@ -121,14 +112,10 @@ function ServicesSection() {
       id="services"
       className="relative overflow-hidden py-20 bg-slate-100 dark:bg-slate-950"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-linear-to-b from-white/70 to-transparent dark:from-slate-900/40" />
-      <div className="pointer-events-none absolute -left-16 top-24 h-48 w-48 rounded-full bg-blue-200/25 blur-3xl dark:bg-blue-500/10" />
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          ref={headerRef}
-          data-in-view={headerVisible}
-          className="soft-reveal mb-12 text-center"
-          style={getRevealDelay(40)}
+          {...headerReveal}
+          className="mb-12 text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             {t.services.title}

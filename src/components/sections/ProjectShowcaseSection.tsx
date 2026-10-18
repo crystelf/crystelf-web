@@ -7,24 +7,15 @@ import {
 } from "@/components/icons";
 import { Project } from "@/types";
 import { useLanguage } from "@/contexts/LanguageContext";
-import useInViewAnimation from "@/hooks/useInViewAnimation";
-import {
-  getRevealDelay,
-  getRevealDirection,
-  getTagDelay,
-  revealViewport,
-} from "@/utils/animations";
+import { useReveal } from "@/hooks/useReveal";
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const [cardRef, cardVisible] =
-    useInViewAnimation<HTMLDivElement>(revealViewport);
+  const reveal = useReveal<HTMLDivElement>(index);
 
   return (
     <div
-      ref={cardRef}
-      data-in-view={cardVisible}
-      className={`soft-reveal ${getRevealDirection(index)} surface-card group flex flex-col rounded-2xl bg-white/95 p-6 shadow-lg shadow-slate-200/60 dark:bg-slate-800/95 dark:shadow-slate-950/30`}
-      style={getRevealDelay(index * 90 + 120)}
+      {...reveal}
+      className={`group flex flex-col rounded-2xl bg-white/95 p-6 shadow-lg shadow-slate-200/60 dark:bg-slate-800/95 dark:shadow-slate-950/30`}
     >
       <div className="grow">
         <div className="relative flex items-center justify-between">
@@ -52,15 +43,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       </div>
       <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50">
         <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag, tagIndex) => (
+          {project.tags.map((tag) => (
             <span
               key={tag}
-              className={`inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 transition duration-500 hover:-translate-y-0.5 hover:scale-105 dark:bg-blue-900/50 dark:text-blue-300 ${
-                cardVisible
-                  ? "translate-y-0 scale-100 opacity-100"
-                  : "translate-y-1 scale-[0.98] opacity-80"
-              }`}
-              style={getTagDelay(tagIndex * 70 + 160)}
+              className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 transition duration-500 hover:-translate-y-0.5 hover:scale-105 dark:bg-blue-900/50 dark:text-blue-300"
             >
               {tag}
             </span>
@@ -73,8 +59,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 function ProjectShowcaseSection() {
   const { t } = useLanguage();
-  const [headerRef, headerVisible] =
-    useInViewAnimation<HTMLDivElement>(revealViewport);
+  const headerReveal = useReveal<HTMLDivElement>();
 
   const projects: Project[] = useMemo(
     () => [
@@ -115,13 +100,10 @@ function ProjectShowcaseSection() {
       id="projects"
       className="relative overflow-hidden py-20 bg-white dark:bg-slate-900"
     >
-      <div className="pointer-events-none absolute right-0 top-24 h-56 w-56 rounded-full bg-sky-200/25 blur-3xl dark:bg-sky-500/10" />
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          ref={headerRef}
-          data-in-view={headerVisible}
-          className="soft-reveal mb-12 text-center"
-          style={getRevealDelay(40)}
+          {...headerReveal}
+          className="mb-12 text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             {t.projects.title}

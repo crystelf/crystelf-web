@@ -83,25 +83,20 @@ function LanguageSelector() {
       {isOpen && (
         <div
           ref={dropdownRef}
-          className="dropdown-panel absolute right-0 z-50 mt-2 w-52 origin-top-right rounded-2xl border border-slate-200/80 bg-white/95 p-1.5 shadow-xl shadow-slate-200/60 backdrop-blur-xl dark:border-slate-700/80 dark:bg-slate-800/95 dark:shadow-slate-950/40 sm:w-60"
+          className="absolute right-0 z-50 mt-2 w-52 origin-top-right rounded-2xl border border-slate-200/80 bg-white/95 p-1.5 shadow-xl shadow-slate-200/60 backdrop-blur-xl dark:border-slate-700/80 dark:bg-slate-800/95 dark:shadow-slate-950/40 sm:w-60"
           role="menu"
           aria-orientation="vertical"
         >
-          {languages.map((language, index) => (
+          {languages.map((language) => (
             <button
               key={language.code}
               onClick={() => handleLanguageChange(language.code)}
-              className={`dropdown-item flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm transition-[transform,color,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.01] active:scale-[0.99] ${
+              className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm transition-[transform,color,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.01] active:scale-[0.99] ${
                 locale === language.code
                   ? "bg-blue-50/90 font-medium text-blue-600 shadow-sm shadow-blue-100/80 dark:bg-blue-900/25 dark:text-blue-400 dark:shadow-blue-950/20"
                   : "text-slate-700 hover:bg-slate-100/90 dark:text-slate-300 dark:hover:bg-slate-700/80"
               }`}
               role="menuitem"
-              style={
-                {
-                  "--enter-delay": `${index * 45}ms`,
-                } as React.CSSProperties
-              }
             >
               <div className="flex flex-col items-start">
                 <span className="font-medium">{language.nativeName}</span>

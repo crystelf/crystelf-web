@@ -1,21 +1,12 @@
 import { GitHubIcon } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
-import useInViewAnimation from "@/hooks/useInViewAnimation";
-import { revealViewport } from "@/utils/animations";
 
 function Footer() {
   const { t } = useLanguage();
-  const [footerRef, footerVisible] = useInViewAnimation<HTMLElement>({
-    ...revealViewport,
-    rootMargin: "0px 0px 18% 0px",
-    threshold: 0.04,
-  });
 
   return (
     <footer
-      ref={footerRef}
-      data-in-view={footerVisible}
-      className="soft-reveal border-t border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-950"
+      className="border-t border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-950"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">

@@ -3,7 +3,6 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSelector from "@/components/layout/LanguageSelector";
 import { CrystelfLogo, GitHubIcon, MoonIcon, SunIcon } from "@/components/icons";
-import { getIntroDelay } from "@/utils/animations";
 
 function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -30,12 +29,11 @@ function Header() {
     <header className="sticky top-0 z-50">
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          className={`intro-item mt-3 flex h-16 items-center justify-between transition-all duration-300 ${
+          className={`mt-3 flex h-16 items-center justify-between transition-all duration-300 ${
             isScrolled
               ? "rounded-2xl bg-white/72 px-4 shadow-lg shadow-slate-200/50 ring-1 ring-slate-900/5 backdrop-blur-xl dark:bg-slate-900/72 dark:shadow-slate-950/40 dark:ring-white/10"
               : "px-0"
           }`}
-          style={getIntroDelay(0)}
         >
           <a
             href="#"
@@ -47,12 +45,11 @@ function Header() {
             <span>crystelf</span>
           </a>
           <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link, index) => (
+            {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="group intro-item relative text-sm font-medium text-slate-600 transition duration-200 hover:-translate-y-0.5 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
-                style={getIntroDelay(220 + index * 70)}
+                className="group relative text-sm font-medium text-slate-600 transition duration-200 hover:-translate-y-0.5 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current opacity-70 transition-transform duration-300 group-hover:scale-x-100" />
