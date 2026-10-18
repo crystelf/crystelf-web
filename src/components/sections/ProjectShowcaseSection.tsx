@@ -1,5 +1,10 @@
 import { useMemo } from "react";
-import { AiIcon, CodeBracketIcon, PluginIcon } from "@/constants";
+import {
+  AiIcon,
+  CodeBracketIcon,
+  ExternalLinkIcon,
+  PluginIcon,
+} from "@/components/icons";
 import { Project } from "@/types";
 import { useLanguage } from "@/contexts/LanguageContext";
 import useInViewAnimation from "@/hooks/useInViewAnimation";
@@ -38,15 +43,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             className="text-slate-400 transition duration-300 group-hover:rotate-6 group-hover:text-blue-500 dark:group-hover:text-blue-400"
             aria-label={`View ${project.title} on GitHub`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-            </svg>
+            <ExternalLinkIcon className="size-5" />
           </a>
         </div>
         <p className="relative mt-4 text-slate-500 dark:text-slate-400">
@@ -82,21 +79,21 @@ function ProjectShowcaseSection() {
   const projects: Project[] = useMemo(
     () => [
       {
-        icon: <CodeBracketIcon />,
+        icon: <CodeBracketIcon className="size-8" />,
         title: t.projectsData.core.title,
         description: t.projectsData.core.description,
         link: "https://github.com/crystelf/crystelf-core",
         tags: ["TypeScript", "NestJS", "Express"],
       },
       {
-        icon: <PluginIcon />,
+        icon: <PluginIcon className="size-8" />,
         title: t.projectsData.plugin.title,
         description: t.projectsData.plugin.description,
         link: "https://github.com/jerryplusy/crystelf-plugin",
         tags: ["JavaScript", "Node.js", "TRSS-Yunzai"],
       },
       {
-        icon: <AiIcon />,
+        icon: <AiIcon className="size-8" />,
         title: t.projectsData.ai.title,
         description: t.projectsData.ai.description,
         link: "https://github.com/jerryplusy/crystelf-plugin",

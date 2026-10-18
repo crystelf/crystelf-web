@@ -7,7 +7,7 @@ import {
   MisskeyIcon,
   GiteaIcon,
   MinecraftIcon,
-} from "@/constants";
+} from "@/components/icons";
 import { Service } from "@/types";
 import { useLanguage } from "@/contexts/LanguageContext";
 import useInViewAnimation from "@/hooks/useInViewAnimation";
@@ -56,43 +56,43 @@ function ServicesSection() {
   const services: Service[] = useMemo(
     () => [
       {
-        icon: <CodeBracketIcon />,
+        icon: <CodeBracketIcon className="size-8" />,
         title: t.servicesData.core.title,
         description: t.servicesData.core.description,
         link: "https://github.com/crystelf/crystelf-core",
       },
       {
-        icon: <BookOpenIcon />,
+        icon: <BookOpenIcon className="size-8" />,
         title: t.servicesData.docs.title,
         description: t.servicesData.docs.description,
         link: "https://docs.crystelf.top",
       },
       {
-        icon: <BotIcon />,
+        icon: <BotIcon className="size-8" />,
         title: t.servicesData.cloudRobot.title,
         description: t.servicesData.cloudRobot.description,
         link: "https://docs.crystelf.top/bot",
       },
       {
-        icon: <DriveIcon />,
+        icon: <DriveIcon className="size-8" />,
         title: t.servicesData.drive.title,
         description: t.servicesData.drive.description,
         link: "https://alist.crystelf.top",
       },
       {
-        icon: <MisskeyIcon />,
+        icon: <MisskeyIcon className="size-8" />,
         title: t.servicesData.lab.title,
         description: t.servicesData.lab.description,
         link: "https://lab.crystelf.top",
       },
       {
-        icon: <GiteaIcon />,
+        icon: <GiteaIcon className="size-8" />,
         title: t.servicesData.gitea.title,
         description: t.servicesData.gitea.description,
         link: "https://git.crystelf.top",
       },
       {
-        icon: <MinecraftIcon />,
+        icon: <MinecraftIcon className="size-8" />,
         title: t.servicesData.mc.title,
         description: t.servicesData.mc.description,
         link: "https://mc.crystelf.top",
