@@ -1,86 +1,66 @@
-import { useState, useEffect } from "react";
-import { useTheme } from "@/contexts/ThemeContext";
+import { GitHubIcon } from "@/components/icons";
+import { BrandMark } from "@/components/layout/BrandMark";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { MobileNav } from "@/components/layout/MobileNav";
+import { NAV_IDS, NAV_ITEMS } from "@/components/layout/navigation";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { Container } from "@/components/ui/Container";
+import { cx } from "@/components/ui/cx";
+import { IconLink } from "@/components/ui/IconButton";
 import { useLanguage } from "@/contexts/LanguageContext";
-import LanguageSelector from "@/components/layout/LanguageSelector";
-import { CrystelfLogo, GitHubIcon, MoonIcon, SunIcon } from "@/components/icons";
+import { GITHUB_ORG_URL } from "@/data/site";
+import { useActiveSection } from "@/hooks/useActiveSection";
+import { useScrolled } from "@/hooks/useScrolled";
 
-function Header() {
-  const { theme, toggleTheme } = useTheme();
+export function Header() {
   const { t } = useLanguage();
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: t.nav.services, href: "#services" },
-    { name: t.nav.projects, href: "#projects" },
-    { name: t.nav.about, href: "#about" },
-  ];
+  const activeId = useActiveSection(NAV_IDS);
+  const isScrolled = useScrolled();
 
   return (
-    <header className="sticky top-0 z-50">
-      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className={`mt-3 flex h-16 items-center justify-between transition-all duration-300 ${
-            isScrolled
-              ? "rounded-2xl bg-white/72 px-4 shadow-lg shadow-slate-200/50 ring-1 ring-slate-900/5 backdrop-blur-xl dark:bg-slate-900/72 dark:shadow-slate-950/40 dark:ring-white/10"
-              : "px-0"
-          }`}
+    <header
+      className={cx(
+        "sticky top-0 z-40 border-b bg-canvas transition-colors",
+        isScrolled ? "border-line" : "border-transparent",
+      )}
+    >
+      <Container className="flex h-16 items-center justify-between gap-4">
+        <a
+          href="#hero"
+          className="inline-flex min-h-11 items-center gap-2 font-mono text-sm font-medium text-fg transition-colors hover:text-accent"
         >
-          <a
-            href="#"
-            className="group flex items-center space-x-2 text-2xl font-bold text-blue-600 dark:text-blue-400"
-          >
-            <div className="h-8 w-8 shrink-0 transition duration-500 group-hover:rotate-360">
-              <CrystelfLogo className="size-8" />
-            </div>
-            <span>crystelf</span>
-          </a>
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="group relative text-sm font-medium text-slate-600 transition duration-200 hover:-translate-y-0.5 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current opacity-70 transition-transform duration-300 group-hover:scale-x-100" />
-              </a>
-            ))}
-          </nav>
-          <div className="flex items-center space-x-3 sm:space-x-4">
-            <LanguageSelector />
-            <a
-              href="https://github.com/crystelf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full p-2 text-slate-500 transition duration-200 hover:-translate-y-0.5 hover:scale-110 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
-            >
-              <GitHubIcon className="size-6" />
-            </a>
-            <button
-              onClick={toggleTheme}
-              className="rounded-full p-2 text-slate-500 transition duration-200 hover:-translate-y-0.5 hover:scale-110 hover:rotate-12 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
-            >
-              {theme === "light" ? (
-                <MoonIcon className="size-6" />
-              ) : (
-                <SunIcon className="size-6" />
-              )}
-            </button>
-          </div>
+          <BrandMark />
+        </a>
+        <nav aria-label={t.a11y.mainNav} className="hidden md:block">
+          <ul className="flex items-center gap-6">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeId === item.id;
+              return (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    aria-current={isActive ? "true" : undefined}
+                    className={cx(
+                      "inline-flex h-11 items-center font-mono text-sm transition-colors hover:text-accent",
+                      isActive ? "text-accent" : "text-fg-muted",
+                    )}
+                  >
+                    {t.nav[item.id]}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+        <div className="hidden items-center gap-2 md:flex">
+          <LanguageSwitcher />
+          <ThemeToggle />
+          <IconLink href={GITHUB_ORG_URL} label={t.a11y.githubLink} external>
+            <GitHubIcon className="size-5" />
+          </IconLink>
         </div>
-      </div>
+        <MobileNav activeId={activeId} />
+      </Container>
     </header>
   );
 }
-
-export default Header;
