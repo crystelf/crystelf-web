@@ -18,6 +18,10 @@
     scrollbar-color: var(--cf-line-strong) var(--cf-canvas);
   }
 
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+
   body {
     min-height: 100dvh;
     background-color: var(--cf-canvas);
