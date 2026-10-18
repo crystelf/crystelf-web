@@ -1,7 +1,7 @@
 {
   "name": "crystelf-web",
   "description": "The web pages for crystelf",
-  "main": "index.tsx",
+  "main": "src/main.tsx",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/crystelf/crystelf-web.git"

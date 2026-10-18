@@ -1,10 +1,9 @@
-import React from "react";
-import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
-import ServicesSection from "./components/ServicesSection";
-import ProjectShowcaseSection from "./components/ProjectShowcaseSection";
-import AboutSection from "./components/AboutSection";
-import Footer from "./components/Footer";
+import Header from "@/components/layout/Header";
+import HeroSection from "@/components/sections/HeroSection";
+import ServicesSection from "@/components/sections/ServicesSection";
+import ProjectShowcaseSection from "@/components/sections/ProjectShowcaseSection";
+import AboutSection from "@/components/sections/AboutSection";
+import Footer from "@/components/layout/Footer";
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
         <HeroSection />
         <ServicesSection />
         <ProjectShowcaseSection />
-        {/*<NavigationSection />*/}
         <AboutSection />
       </main>
       <Footer />

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import {
   CodeBracketIcon,
   BookOpenIcon,
@@ -7,15 +7,15 @@ import {
   MisskeyIcon,
   GiteaIcon,
   MinecraftIcon,
-} from "../constants";
-import { Service } from "../types";
-import { useLanguage } from "../contexts/LanguageContext";
-import useInViewAnimation from "../hooks/useInViewAnimation";
+} from "@/constants";
+import { Service } from "@/types";
+import { useLanguage } from "@/contexts/LanguageContext";
+import useInViewAnimation from "@/hooks/useInViewAnimation";
 import {
   getRevealDelay,
   getRevealDirection,
   revealViewport,
-} from "../utils/animations";
+} from "@/utils/animations";
 
 function ServiceCard({ service, index }: { service: Service; index: number }) {
   const [cardRef, cardVisible] =

@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useState, useRef, useEffect } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Locale } from "@/locales";
 
 function GlobeIcon() {

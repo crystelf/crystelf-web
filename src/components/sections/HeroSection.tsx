@@ -1,6 +1,5 @@
-import React from "react";
-import { useLanguage } from "../contexts/LanguageContext";
-import { getIntroDelay } from "../utils/animations";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { getIntroDelay } from "@/utils/animations";
 
 function HeroSection() {
   const { t } = useLanguage();

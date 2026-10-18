@@ -1,5 +1,7 @@
-@import "tailwindcss";
-@config "./tailwind.config.js";
+@import "tailwindcss" source(none);
+@source "../index.html";
+@source "./";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @media (pointer: fine) {
   html {

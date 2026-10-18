@@ -1,14 +1,14 @@
-import React, { useMemo } from "react";
-import { AiIcon, CodeBracketIcon, PluginIcon } from "../constants";
-import { Project } from "../types";
-import { useLanguage } from "../contexts/LanguageContext";
-import useInViewAnimation from "../hooks/useInViewAnimation";
+import { useMemo } from "react";
+import { AiIcon, CodeBracketIcon, PluginIcon } from "@/constants";
+import { Project } from "@/types";
+import { useLanguage } from "@/contexts/LanguageContext";
+import useInViewAnimation from "@/hooks/useInViewAnimation";
 import {
   getRevealDelay,
   getRevealDirection,
   getTagDelay,
   revealViewport,
-} from "../utils/animations";
+} from "@/utils/animations";
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [cardRef, cardVisible] =

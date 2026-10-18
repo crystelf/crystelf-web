@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useTheme } from "../contexts/ThemeContext";
-import { useLanguage } from "../contexts/LanguageContext";
-import LanguageSelector from "./LanguageSelector";
-import { CrystelfLogo } from "@/constants.tsx";
-import { getIntroDelay } from "../utils/animations";
+import { useState, useEffect } from "react";
+import { useTheme } from "@/contexts/ThemeContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSelector from "@/components/layout/LanguageSelector";
+import { CrystelfLogo } from "@/constants";
+import { getIntroDelay } from "@/utils/animations";
 
 // SVG Icons
 function SunIcon() {

@@ -1,7 +1,6 @@
-import React from "react";
-import { useLanguage } from "../contexts/LanguageContext";
-import useInViewAnimation from "../hooks/useInViewAnimation";
-import { revealViewport } from "../utils/animations";
+import { useLanguage } from "@/contexts/LanguageContext";
+import useInViewAnimation from "@/hooks/useInViewAnimation";
+import { revealViewport } from "@/utils/animations";
 
 function GitHubIcon() {
   return (
