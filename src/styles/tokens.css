@@ -1,11 +1,3 @@
-/*
-  Contrast self-check (WCAG 2.x, sRGB; grid lines blended over canvas). Full table: docs/design.md
-  dark   fg 15.82 / fg-muted 9.47 / fg-subtle 6.94 / accent 7.61 on canvas; worst text pair fg-subtle on surface-muted 5.39
-  light  fg 14.69 / fg-muted 7.64 / fg-subtle 5.45 / accent 6.01 on canvas; worst text pair fg-subtle on grid-major 4.62
-  on-accent on accent-solid: dark 5.17, light 6.70; on accent-solid-hover: dark 6.70, light 8.72
-  line-strong (control borders) >= 3.42; focus >= 5.53
-*/
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
