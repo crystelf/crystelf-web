@@ -1,18 +1,20 @@
-import Header from "@/components/layout/Header";
-import HeroSection from "@/components/sections/HeroSection";
-import ServicesSection from "@/components/sections/ServicesSection";
-import ProjectShowcaseSection from "@/components/sections/ProjectShowcaseSection";
-import AboutSection from "@/components/sections/AboutSection";
-import Footer from "@/components/layout/Footer";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { SkipLink } from "@/components/layout/SkipLink";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { ServicesSection } from "@/components/sections/ServicesSection";
 
 function App() {
   return (
     <div className="flex min-h-dvh flex-col">
+      <SkipLink />
       <Header />
-      <main className="grow">
+      <main id="main" tabIndex={-1} className="grow outline-none">
         <HeroSection />
         <ServicesSection />
-        <ProjectShowcaseSection />
+        <ProjectsSection />
         <AboutSection />
       </main>
       <Footer />
