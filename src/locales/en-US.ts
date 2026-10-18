@@ -92,6 +92,7 @@ export const enUS: typeof zhCN = {
   },
   footer: {
     owner: "Crystelf",
+    rights: "All rights reserved",
     github: "GitHub",
   },
 };

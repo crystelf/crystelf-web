@@ -85,6 +85,7 @@ export const zhCN = {
   },
   footer: {
     owner: "晶灵工作室",
+    rights: "保留所有权利",
     github: "GitHub",
   },
 };

@@ -10,9 +10,9 @@ export function Footer() {
 
   return (
     <footer className="border-t border-line">
-      <Container className="flex flex-col items-start gap-4 py-8 md:flex-row md:items-center md:justify-between">
+      <Container className="flex flex-col items-center gap-2 py-8 text-center">
         <p className="label-mono">
-          © {year} {t.footer.owner}
+          © {year} {t.footer.owner} · {t.footer.rights}
         </p>
         <a
           href={GITHUB_ORG_URL}

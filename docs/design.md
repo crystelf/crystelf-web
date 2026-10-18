@@ -314,9 +314,9 @@ function HeroCopy() {
 
 **Footer**
 
-- `<footer className="border-t border-line">`,容器加 `flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between`。
-- 左:`label-mono` 版权行 `© {new Date().getFullYear()} Crystelf`。
-- 右:GitHub 文字链接(`GitHubIcon size-4` 加文字),`inline-flex min-h-11 items-center gap-2 text-sm text-fg-muted transition-colors hover:text-accent`,外链。Footer 只有这一个外链。
+- `<footer className="border-t border-line">`,容器加 `flex flex-col items-center gap-2 py-8 text-center`,所有断点下内容居中。
+- 上:`label-mono` 版权行 `© {年份} {品牌名} · {保留所有权利}`,文案取自 `footer.owner` 与 `footer.rights`。
+- 下:GitHub 文字链接(`GitHubIcon size-4` 加文字),居中,`inline-flex min-h-11 items-center gap-2 text-sm text-fg-muted transition-colors hover:text-accent`,外链。Footer 只有这一个外链。
 
 ### 9.3 内容组件(T3,`src/components/sections/`、`src/components/ui/`)
 
