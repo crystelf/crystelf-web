@@ -84,8 +84,8 @@ export const zhCN = {
     contactDescription: "对外联系渠道正在整理中，确定后会在这里公布。",
   },
   footer: {
-    owner: "晶灵工作室",
-    rights: "保留所有权利",
+    owner: "Crystelf",
+    rights: "All rights reserved",
     github: "GitHub",
   },
 };
