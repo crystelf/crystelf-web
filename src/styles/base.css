@@ -1,0 +1,125 @@
+:root {
+  --cf-grid-image:
+    linear-gradient(to right, var(--cf-grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--cf-grid-major) 1px, transparent 1px),
+    linear-gradient(to right, var(--cf-grid-minor) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--cf-grid-minor) 1px, transparent 1px);
+  --cf-grid-size:
+    var(--cf-grid-major-cell) var(--cf-grid-major-cell),
+    var(--cf-grid-major-cell) var(--cf-grid-major-cell),
+    var(--cf-grid-cell) var(--cf-grid-cell),
+    var(--cf-grid-cell) var(--cf-grid-cell);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scrollbar-color: var(--cf-line-strong) var(--cf-canvas);
+  }
+
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+
+  body {
+    min-height: 100dvh;
+    background-color: var(--cf-canvas);
+    background-image: var(--cf-grid-image);
+    background-size: var(--cf-grid-size);
+    color: var(--cf-fg);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :where([id]) {
+    scroll-margin-top: calc(var(--cf-header-height) + 1rem);
+  }
+
+  ::selection {
+    background-color: var(--cf-selection);
+    color: var(--cf-fg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--cf-focus);
+    outline-offset: 2px;
+  }
+
+  @supports not (scrollbar-color: auto) {
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: var(--cf-canvas);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--cf-line-strong);
+      border: 2px solid var(--cf-canvas);
+    }
+  }
+}
+
+@utility blueprint-grid {
+  background-image: var(--cf-grid-image);
+  background-size: var(--cf-grid-size);
+}
+
+@utility corner-marks {
+  --cf-mark-color: var(--cf-accent);
+  --cf-mark-size: 10px;
+  background-image:
+    linear-gradient(var(--cf-mark-color), var(--cf-mark-color)),
+    linear-gradient(var(--cf-mark-color), var(--cf-mark-color)),
+    linear-gradient(var(--cf-mark-color), var(--cf-mark-color)),
+    linear-gradient(var(--cf-mark-color), var(--cf-mark-color)),
+    linear-gradient(var(--cf-mark-color), var(--cf-mark-color)),
+    linear-gradient(var(--cf-mark-color), var(--cf-mark-color)),
+    linear-gradient(var(--cf-mark-color), var(--cf-mark-color)),
+    linear-gradient(var(--cf-mark-color), var(--cf-mark-color));
+  background-position:
+    top left,
+    top left,
+    top right,
+    top right,
+    bottom left,
+    bottom left,
+    bottom right,
+    bottom right;
+  background-size:
+    var(--cf-mark-size) 1px,
+    1px var(--cf-mark-size),
+    var(--cf-mark-size) 1px,
+    1px var(--cf-mark-size),
+    var(--cf-mark-size) 1px,
+    1px var(--cf-mark-size),
+    var(--cf-mark-size) 1px,
+    1px var(--cf-mark-size);
+  background-repeat: no-repeat;
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.06em;
+  color: var(--cf-fg-subtle);
+}

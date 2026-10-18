@@ -1,17 +1,19 @@
 # Crystelf Web
 
-## Tech Stack
-- React 19 + TypeScript
-- Vite 6 (with React plugin)
-- Tailwind CSS 4 (via `@tailwindcss/postcss`)
-- Motion animation library
-- PostCSS + Autoprefixer
-- Prettier
-- PNPM (lockfile present)
+Website of Crystelf (晶灵工作室). React 19, TypeScript, Vite 6, Tailwind CSS 4, pnpm.
 
-## Build & Run
-- Prerequisites: Node.js ≥ 18, PNPM installed
-- Install deps: `pnpm install`
-- Start dev: `pnpm dev` (default `http://localhost:3000`)
-- Production build: `pnpm build`
-- Local preview: `pnpm preview` (default `http://localhost:3777`)
+## Commands
+
+Requires Node.js `^20.19.0 || ^22.13.0 || >=24` and pnpm.
+
+```sh
+pnpm install
+pnpm dev
+pnpm build
+pnpm typecheck
+pnpm lint
+```
+
+## License
+
+[MIT](LICENSE)
