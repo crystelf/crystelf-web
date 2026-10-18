@@ -2,7 +2,7 @@
 
 > 一句话:藏青底 + 蓝图细网格 + 1px 线框 + 等宽字体标注的「蓝图/终端风」,品牌色只有主蓝与深蓝,所有颜色、字体、间距、动效都从 `src/styles/` 的 token 取用。
 
-本文档面向波次 2 的实现者(T2 布局与导航、T3 内容板块、T4 数据与文案)。实现时只读本文档与 `src/styles/*.css` 即可。旧的 `Header`、`Footer`、`LanguageSelector`、`HeroSection`、`ServicesSection`、`ProjectShowcaseSection`、`AboutSection` 只是迁移后保持可运行,波次 2 整体替换,不要参照它们的样式。
+本文档描述蓝图终端风的设计规范,实现位于 `src/components/`。波次 2 已用新组件整体替换迁移时保留的旧板块与旧布局组件。
 
 ## 1. 文件地图与使用方式
 
@@ -13,6 +13,7 @@
 | `src/styles/base.css` | 页面唯一背景、网格变量、滚动条、焦点环、选区、标题换行、锚点偏移、模态滚动锁定;工具类 `blueprint-grid`、`corner-marks`、`label-mono` |
 | `src/styles/motion.css` | 动效 token、减少动效降级、`[data-reveal]` 入场机制、`term-cursor` 光标 |
 | `src/hooks/useReveal.ts` | 入场动画的唯一入口(全页共享一个 IntersectionObserver) |
+| `src/hooks/useActiveSection.ts` | 导航当前板块高亮(Header 调用一次,桌面导航与抽屉共用同一个 IntersectionObserver) |
 | `src/components/icons/` | 全部图标,`index.ts` 统一导出 |
 | `src/contexts/` | `ThemeProvider` / `useTheme`、`LanguageProvider` / `useLanguage` |
 
@@ -286,10 +287,10 @@ function HeroCopy() {
 
 - `<header className="sticky top-0 z-40 border-b border-line bg-canvas">`,内部容器(第 5 节写法)加 `flex h-16 items-center justify-between gap-4`。
 - 左:品牌链接 `href="#hero"`,类 `inline-flex items-center gap-2 font-mono text-sm font-medium text-fg transition-colors hover:text-accent`;`CrystelfLogo` 用 `size-6 text-accent`;名称来自 locales(中文"晶灵工作室",英文"Crystelf")。
-- 中(`md` 起):`<nav aria-label={…}>` 里 `<ul className="hidden items-center gap-6 md:flex">`;链接 `font-mono text-sm text-fg-muted transition-colors hover:text-accent`。三项依次为 `#services` 公益服务、`#projects` 开源项目、`#about` 关于。滚动高亮当前板块是可选项;做的话当前项设 `aria-current="true"` 和 `text-accent`。
+- 中(`md` 起):`<nav aria-label={…}>` 里 `<ul className="hidden items-center gap-6 md:flex">`;链接 `font-mono text-sm text-fg-muted transition-colors hover:text-accent`。三项依次为 `#services` 公益服务、`#projects` 开源项目、`#about` 关于。当前板块高亮由 `useActiveSection` 提供:当前项设 `aria-current="true"` 和 `text-accent`(抽屉里另加 `bg-accent-soft`)。
 - 右(`md` 起):`LanguageSwitcher`、`ThemeToggle`、GitHub 图标按钮(`href="https://github.com/crystelf"`,外链,`aria-label` 来自 locales)。这是 Header 唯一的外链。
 - `md` 以下:只显示菜单按钮(`IconButton` + `MenuIcon`,`aria-expanded`、`aria-controls="mobile-nav"`)。
-- 不做滚动后变形,不加阴影或模糊。
+- 滚动态只改颜色:页面在顶部时底边框为 `border-transparent`,滚动后变为 `border-line`(`transition-colors`)。不做滚动后变形,不加阴影或模糊。
 
 **MobileNav(抽屉)**
 
@@ -347,7 +348,8 @@ function HeroCopy() {
 **公益服务 / 开源项目(sections)**
 
 - `<section id="services">` / `<section id="projects">`,`aria-labelledby` 指向各自 `h2`,内容为 `SectionHeader` 加列表区。
-- 数据来自 `src/data/services.ts` / `src/data/projects.ts`(T4,当前为空数组)。数组为空时渲染 `EmptyState`。以后有条目时用 `<ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">`,条目卡片的规格届时再定,本轮不做。
+- 数据来自 `src/data/services.ts` / `src/data/projects.ts`(当前为空数组),两个板块共用 `CatalogSection`。数组为空时渲染 `EmptyState`;非空时渲染 `ItemGrid`(`<ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">`,整体 `useReveal()`),每项一个 `ItemCard`。
+- `ItemCard(ui)`:`<article className="flex h-full flex-col gap-3 border border-line bg-surface p-6">`,静态无 hover;`h3` 名称(`text-lg font-medium md:text-xl`)、`text-sm text-fg-muted` 简介、可选标签行(`label-mono rounded-xs border border-line px-2 py-1`)、底部行内外链(文字来自 locales 的 `itemAction`,附 `sr-only` 条目名与"在新标签页打开")。
 
 **关于(sections)**
 
@@ -360,7 +362,7 @@ function HeroCopy() {
 - 统一 API:`<GitHubIcon className="size-5" />`,接受全部 SVG 属性;默认 `width` / `height` 为 `1em`、`aria-hidden="true"`,颜色继承 `currentColor`。
 - 尺寸:行内 `size-4`,按钮内 `size-5`,Header 品牌 logo `size-6`。
 - 图标单独作为按钮或链接内容时,名称写在按钮的 `aria-label` 上,图标保持 `aria-hidden`。
-- 当前有:`CrystelfLogo`、`GitHubIcon`、`SunIcon`、`MoonIcon`、`GlobeIcon`、`ChevronDownIcon`、`CheckIcon`、`MenuIcon`、`CloseIcon`、`ExternalLinkIcon`;以及旧板块在用的 `CodeBracketIcon`、`PluginIcon`、`AiIcon`、`DriveIcon`、`MisskeyIcon`、`GiteaIcon`、`MinecraftIcon`、`BookOpenIcon`、`BotIcon`。后一组在旧板块被替换后可能失去引用,由 T5 确认后删除或留给以后的数据条目。
+- 当前有:`CrystelfLogo`、`GitHubIcon`、`SunIcon`、`MoonIcon`、`MenuIcon`、`CloseIcon`、`ExternalLinkIcon`。旧板块专用图标和失去引用的 `GlobeIcon`、`ChevronDownIcon`、`CheckIcon` 已在波次 2 删除。
 - 新图标:独立文件,属性用 camelCase,加入 `index.ts`。
 
 ## 10. 无障碍要求
