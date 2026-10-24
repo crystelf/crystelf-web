@@ -65,6 +65,14 @@ export const enUS: typeof zhCN = {
     subtitle: "Non-profit services that Crystelf and our community maintain together.",
     emptyCommand: "ls ./services",
     itemAction: "Visit service",
+    tabsLabel: "Service groups",
+    groups: {
+      crystelf: { name: "Crystelf", description: "Community services run by Crystelf" },
+      fograin: { name: "Fograin", description: "Community services from Fograin" },
+    },
+    countOne: "service",
+    countOther: "services",
+    joinRequired: "Join group",
   },
   projects: {
     label: "projects",
@@ -98,9 +106,11 @@ export const enUS: typeof zhCN = {
       "We believe in the power of collaboration, and we welcome contributors from every background to help keep our community a friendly place.",
     ],
     contactCommand: "cat ./contact",
-    contactComingSoon: "Contact details coming soon",
+    contactTitle: "Contact us",
     contactDescription:
-      "We're setting up our contact channels and will list them here once they're ready.",
+      "The best way to reach us is to join a QQ group or open an issue on GitHub.",
+    qqGroupLabel: "QQ group",
+    githubLabel: "GitHub",
   },
   footer: {
     owner: "Crystelf",

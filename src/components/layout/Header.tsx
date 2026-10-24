@@ -24,10 +24,10 @@ export function Header() {
         isScrolled ? "border-line" : "border-transparent",
       )}
     >
-      <Container className="flex h-16 items-center justify-between gap-4">
+      <Container className="flex h-16 items-center justify-between gap-4 md:grid md:grid-cols-[1fr_auto_1fr]">
         <a
           href="#hero"
-          className="inline-flex min-h-11 items-center gap-2 font-mono text-sm font-medium text-fg transition-colors hover:text-accent"
+          className="inline-flex min-h-11 items-center gap-2 justify-self-start font-mono text-sm font-medium text-fg transition-colors hover:text-accent"
         >
           <BrandMark />
         </a>
@@ -52,7 +52,7 @@ export function Header() {
             })}
           </ul>
         </nav>
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-2 justify-self-end md:flex">
           <LanguageSwitcher />
           <ThemeToggle />
           <IconLink href={GITHUB_ORG_URL} label={t.a11y.githubLink} external>

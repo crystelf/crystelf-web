@@ -1,37 +1,41 @@
 import type { ReactNode } from "react";
 import { ExternalHint } from "@/components/ui/ExternalHint";
 import { cx } from "@/components/ui/cx";
-import type { ProjectStatus } from "@/data/types";
 import { useReveal } from "@/hooks/useReveal";
+
+export type BadgeTone = "stable" | "preview" | "archived" | "notice";
+
+export interface ItemBadge {
+  label: string;
+  tone: BadgeTone;
+}
 
 interface ItemCardProps {
   title: string;
   description: string;
-  href: string;
   actionLabel: string;
+  href?: string;
   tags?: readonly string[];
-  status?: { label: string; tone: ProjectStatus };
+  badge?: ItemBadge;
 }
 
-const statusTone: Record<ProjectStatus, string> = {
+const badgeTone: Record<BadgeTone, string> = {
   stable: "border-accent text-accent",
   preview: "border-line-strong text-fg-muted",
   archived: "border-line text-fg-subtle",
+  notice: "border-accent bg-accent-soft text-accent",
 };
 
-export function ItemCard({ title, description, href, actionLabel, tags, status }: ItemCardProps) {
+export function ItemCard({ title, description, actionLabel, href, tags, badge }: ItemCardProps) {
   return (
     <article className="flex h-full flex-col gap-3 border border-line bg-surface p-6">
       <div className="flex items-start justify-between gap-3">
         <h3 className="text-lg font-medium text-fg md:text-xl">{title}</h3>
-        {status && (
+        {badge && (
           <span
-            className={cx(
-              "label-mono shrink-0 rounded-xs border px-2 py-1",
-              statusTone[status.tone],
-            )}
+            className={cx("label-mono shrink-0 rounded-xs border px-2 py-1", badgeTone[badge.tone])}
           >
-            {status.label}
+            {badge.label}
           </span>
         )}
       </div>
@@ -45,16 +49,18 @@ export function ItemCard({ title, description, href, actionLabel, tags, status }
           ))}
         </ul>
       )}
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-auto inline-flex min-h-11 items-center gap-1.5 self-start text-sm text-accent underline decoration-1 underline-offset-4 transition-colors hover:text-accent-hover"
-      >
-        {actionLabel}
-        <span className="sr-only"> {title}</span>
-        <ExternalHint />
-      </a>
+      {href && (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-auto inline-flex min-h-11 items-center gap-1.5 self-start text-sm text-accent underline decoration-1 underline-offset-4 transition-colors hover:text-accent-hover"
+        >
+          {actionLabel}
+          <span className="sr-only"> {title}</span>
+          <ExternalHint />
+        </a>
+      )}
     </article>
   );
 }
