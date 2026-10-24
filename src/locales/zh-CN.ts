@@ -67,6 +67,18 @@ export const zhCN = {
       "从面向开发者与社区的工具，到面向用户的前端应用，我们以开源的方式构建每一个项目。",
     emptyCommand: "ls ./projects",
     itemAction: "查看源码",
+    tabsLabel: "项目分组",
+    groups: {
+      crystelf: { name: "Crystelf", description: "晶灵工作室的开源项目" },
+      mioku: { name: "Mioku", description: "Mioku Lab 的机器人框架与应用" },
+    },
+    countOne: "个项目",
+    countOther: "个项目",
+    status: {
+      stable: "stable",
+      preview: "preview",
+      archived: "archived",
+    },
   },
   emptyState: {
     comingSoon: "即将上线",

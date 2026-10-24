@@ -3,14 +3,14 @@ import { ItemCard, ItemGrid } from "@/components/ui/ItemCard";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useLanguage } from "@/contexts/LanguageContext";
-import type { ProjectItem, ServiceItem } from "@/data/types";
+import type { ServiceItem } from "@/data/types";
 import type { Translations } from "@/locales";
 
 interface CatalogSectionProps {
   id: string;
   index: string;
-  copy: Translations["services"] | Translations["projects"];
-  items: readonly (ServiceItem | ProjectItem)[];
+  copy: Translations["services"];
+  items: readonly ServiceItem[];
 }
 
 export function CatalogSection({ id, index, copy, items }: CatalogSectionProps) {
