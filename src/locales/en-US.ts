@@ -73,6 +73,18 @@ export const enUS: typeof zhCN = {
       "From tools for developers and communities to user-facing front ends, we build every project in the open.",
     emptyCommand: "ls ./projects",
     itemAction: "View source",
+    tabsLabel: "Project groups",
+    groups: {
+      crystelf: { name: "Crystelf", description: "Open-source projects from Crystelf" },
+      mioku: { name: "Mioku", description: "Bot framework and apps from Mioku Lab" },
+    },
+    countOne: "project",
+    countOther: "projects",
+    status: {
+      stable: "stable",
+      preview: "preview",
+      archived: "archived",
+    },
   },
   emptyState: {
     comingSoon: "Coming soon",

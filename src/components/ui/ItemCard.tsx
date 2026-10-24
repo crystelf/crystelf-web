@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { ExternalHint } from "@/components/ui/ExternalHint";
+import { cx } from "@/components/ui/cx";
+import type { ProjectStatus } from "@/data/types";
 import { useReveal } from "@/hooks/useReveal";
 
 interface ItemCardProps {
@@ -8,12 +10,31 @@ interface ItemCardProps {
   href: string;
   actionLabel: string;
   tags?: readonly string[];
+  status?: { label: string; tone: ProjectStatus };
 }
 
-export function ItemCard({ title, description, href, actionLabel, tags }: ItemCardProps) {
+const statusTone: Record<ProjectStatus, string> = {
+  stable: "border-accent text-accent",
+  preview: "border-line-strong text-fg-muted",
+  archived: "border-line text-fg-subtle",
+};
+
+export function ItemCard({ title, description, href, actionLabel, tags, status }: ItemCardProps) {
   return (
     <article className="flex h-full flex-col gap-3 border border-line bg-surface p-6">
-      <h3 className="text-lg font-medium text-fg md:text-xl">{title}</h3>
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="text-lg font-medium text-fg md:text-xl">{title}</h3>
+        {status && (
+          <span
+            className={cx(
+              "label-mono shrink-0 rounded-xs border px-2 py-1",
+              statusTone[status.tone],
+            )}
+          >
+            {status.label}
+          </span>
+        )}
+      </div>
       <p className="text-sm text-fg-muted">{description}</p>
       {tags && tags.length > 0 && (
         <ul className="flex flex-wrap gap-2">
