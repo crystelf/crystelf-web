@@ -65,6 +65,14 @@ export const enUS: typeof zhCN = {
     subtitle: "Non-profit services that Crystelf and our community maintain together.",
     emptyCommand: "ls ./services",
     itemAction: "Visit service",
+    tabsLabel: "Service groups",
+    groups: {
+      crystelf: { name: "Crystelf", description: "Community services run by Crystelf" },
+      fograin: { name: "Fograin", description: "Community services from Fograin" },
+    },
+    countOne: "service",
+    countOther: "services",
+    joinRequired: "Join group",
   },
   projects: {
     label: "projects",

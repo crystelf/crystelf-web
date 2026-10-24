@@ -2,11 +2,15 @@ import type { Locale } from "@/locales";
 
 export type LocalizedText = Record<Locale, string>;
 
+export type ServiceGroup = "crystelf" | "fograin";
+
 export interface ServiceItem {
   id: string;
-  name: string;
+  name: LocalizedText;
   description: LocalizedText;
-  url: string;
+  group: ServiceGroup;
+  url?: string;
+  requiresJoin?: boolean;
   tags?: readonly string[];
 }
 

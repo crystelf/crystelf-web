@@ -59,6 +59,14 @@ export const zhCN = {
     subtitle: "由晶灵工作室与社区成员共同维护，不以营利为目的。",
     emptyCommand: "ls ./services",
     itemAction: "访问服务",
+    tabsLabel: "服务分组",
+    groups: {
+      crystelf: { name: "Crystelf", description: "晶灵工作室运营的公益服务" },
+      fograin: { name: "Fograin", description: "有雾雨的公益服务" },
+    },
+    countOne: "项服务",
+    countOther: "项服务",
+    joinRequired: "需加群",
   },
   projects: {
     label: "开源项目",
