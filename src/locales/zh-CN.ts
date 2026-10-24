@@ -62,7 +62,7 @@ export const zhCN = {
     tabsLabel: "服务分组",
     groups: {
       crystelf: { name: "Crystelf", description: "晶灵工作室运营的公益服务" },
-      fograin: { name: "Fograin", description: "有雾雨的公益服务" },
+      fograin: { name: "Fograin", description: "雾雨的公益服务" },
     },
     countOne: "项服务",
     countOther: "项服务",
@@ -100,8 +100,10 @@ export const zhCN = {
       "我们相信协作的力量，欢迎不同背景的贡献者参与进来，一起营造友好的社区氛围。",
     ],
     contactCommand: "cat ./contact",
-    contactComingSoon: "联系方式即将上线",
-    contactDescription: "对外联系渠道正在整理中，确定后会在这里公布。",
+    contactTitle: "联系我们",
+    contactDescription: "最好的联系方式是加入 QQ 群，或在 GitHub 上提出 issue。",
+    qqGroupLabel: "QQ 群",
+    githubLabel: "GitHub",
   },
   footer: {
     owner: "Crystelf",

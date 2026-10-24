@@ -36,12 +36,13 @@ export const services: readonly ServiceItem[] = [
   },
   {
     id: "fograin-mc",
-    name: { "zh-CN": "有雾雨 MC 服务器", "en-US": "Fograin Minecraft server" },
+    name: { "zh-CN": "雾雨 MC 服务器", "en-US": "Fograin Minecraft server" },
     group: "fograin",
     description: {
-      "zh-CN": "有雾雨的 Minecraft 服务器，为玩家提供友好的游玩环境。",
+      "zh-CN": "雾雨的 Minecraft 服务器，为玩家提供友好的游玩环境。",
       "en-US": "Fograin's Minecraft server, a friendly place for players to hang out.",
     },
+    url: "https://mc.crystelf.top",
     tags: ["Minecraft"],
   },
 ];
