@@ -12,19 +12,21 @@ export function AboutSection() {
 
   return (
     <Section id="about" titleId="about-title">
-      <SectionHeader
-        index="03"
-        label={t.about.label}
-        title={t.about.title}
-        titleId="about-title"
-      />
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <div {...body} className="flex min-w-0 flex-col gap-4">
-          {t.about.body.map((paragraph) => (
-            <p key={paragraph} className="max-w-text text-base text-fg-muted">
-              {paragraph}
-            </p>
-          ))}
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
+        <div className="min-w-0">
+          <SectionHeader
+            index="03"
+            label={t.about.label}
+            title={t.about.title}
+            titleId="about-title"
+          />
+          <div {...body} className="flex flex-col gap-4">
+            {t.about.body.map((paragraph) => (
+              <p key={paragraph} className="max-w-text text-base text-fg-muted">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
         <div {...contact} className="border border-line bg-surface p-6 corner-marks">
           <p className="font-mono text-sm text-fg-subtle">
